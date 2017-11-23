@@ -1,0 +1,60 @@
+<Panel ux:Class="ID_Project_last.MapView">
+	<!-- cette vue traites toutes les informations de la CNI -->
+	<Router ux:Dependency="router" />
+	<JavaScript File="CoreQuery.js" />
+
+	<Material.DrawerPanel>
+		<Material.Drawer ux:Binding="Drawer" Edge="Left">
+			<DockPanel Background="#000">
+				<Panel Background="#000" Height="50" Dock="Top">
+					<Text Alignment="Center" TextColor="#fff" Value="CONFIGURATION">
+						<DropShadow />
+					</Text>
+				</Panel>
+				<ScrollView>
+					<StackPanel ItemSpacing="25" Margin="30,20,0,0">
+						<Each Items="{panneauLateral}">
+							<Grid Columns="1*,100">
+								<Text Value="{name}" TextWrapping="Wrap" TextColor="#fff" Color="#fff" FontSize="18" />
+								<Material.AppBarIcon Icon="{icon}" Alignment="Center" Dock="Right" Margin="0,0,10,0" />
+							</Grid>
+						</Each>
+					</StackPanel>
+				</ScrollView>
+			</DockPanel>
+		</Material.Drawer>
+			
+		<DockPanel>
+			<Image Layer="Background" File="Images/background.jpg" StretchMode="UniformToFill" />
+			<Material.AppBar Dock="Top">
+				<Material.AppBarIcon Dock="Left" Icon="ChevronLeft" Clicked="{goBack}" />
+				<Text Value="Carte de commissariats" Alignment="Center" Color="#fff" FontSize="17" TextColor="#fff" />
+				<Material.AppBarIcon Dock="Right" Icon="Menu" Clicked="{openDrawerPanel}" />
+			</Material.AppBar>
+
+			<!-- le bouton de recherche -->
+			<StackPanel Alignment="BottomCenter" Margin="0,0,0,40">
+				<Material.ActionButton Icon="GoogleMaps">
+					<Clicked>
+						<Scale Factor="1.5" />
+					</Clicked>
+				</Material.ActionButton>
+			</StackPanel>
+
+
+
+			<DockPanel>
+				<NativeViewHost>
+					<MapView AllowRotate="true" AllowZoom="true">
+					</MapView>
+				</NativeViewHost>
+			</DockPanel>
+			
+			<!--StackPanel Alignment="BottomRight">
+				<Material.MiniActionButton Icon="Plus" />
+				<Material.ActionButton Icon="AccountSearch" />
+			</StackPanel-->
+
+		</DockPanel>
+	</Material.DrawerPanel>
+</Panel>

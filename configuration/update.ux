@@ -1,0 +1,4 @@
+<Panel ux:Class="configuration.update">
+	<Router ux:Dependency="router" />
+	<JavaScript File="../CoreQuery.js" />
+</Panel>

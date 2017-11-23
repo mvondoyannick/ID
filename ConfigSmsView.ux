@@ -1,0 +1,95 @@
+<Panel ux:Class="ID_Project_last.ConfigSmsView">
+	<!-- cette vue traites toutes les informations de la CNI -->
+	<Router ux:Dependency="router" />
+	<JavaScript File="CoreQuery.js" />
+	
+	<Image Layer="Background" File="Images/background.jpg" StretchMode="UniformToFill" />
+	<Material.DrawerPanel>
+		<Material.Drawer ux:Binding="Drawer" Edge="Left">
+			<DockPanel Background="#000">
+				<Panel Background="#000" Height="50" Dock="Top">
+					<Text Alignment="Center" TextColor="#fff" Value="CONFIGURATION">
+						<DropShadow />
+					</Text>
+				</Panel>
+				<ScrollView>
+					<StackPanel ItemSpacing="25" Margin="30,20,0,0">
+						<Each Items="{panneauLateral}">
+							<Grid Columns="1*,100">
+								<Text Value="{name}" TextWrapping="Wrap" TextColor="#fff" Color="#fff" FontSize="18" />
+								<Material.AppBarIcon Icon="{icon}" Alignment="Center" Dock="Right" Margin="0,0,10,0" />
+							</Grid>
+						</Each>
+					</StackPanel>
+				</ScrollView>
+			</DockPanel>
+		</Material.Drawer>
+			
+		<DockPanel>
+			<Image Layer="Background" File="Images/background.jpg" StretchMode="UniformToFill" />
+			<Material.AppBar Dock="Top">
+				<Material.AppBarIcon Dock="Left" Icon="ChevronLeft" Clicked="{goBack}" />
+				<Text Value="COnfiguration Notifications SMS" Alignment="Center" Color="#fff" FontSize="17" TextColor="#fff" />
+				<Material.AppBarIcon Dock="Right" Icon="Menu" Clicked="{openDrawerPanel}" />
+			</Material.AppBar>
+
+			<!-- le bouton de recherche -->
+			<StackPanel Alignment="BottomCenter" Margin="0,0,0,40">
+				<Material.ActionButton Icon="Check" Clicked="{search}">
+					<WhilePressed>
+						<Scale Factor="1.5" />
+					</WhilePressed>
+				</Material.ActionButton>
+			</StackPanel>
+
+
+
+			<DockPanel>
+				<ScrollView>
+					<StackPanel ItemSpacing="10">
+						<!--Material.Card Width="100%" Height="100">
+							<Image File="{picture}" StretchMode="UniformToFill" >
+								<Text Value="{description}" Alignment="Center" TextWrapping="Wrap" TextAlignment="Center" TextColor="#fff" />
+							</Image>
+						</Material.Card-->
+						<Text Value="Salut! je suis pret a vous répondre." Alignment="Center" TextAlignment="Center" TextWrapping="Wrap" Margin="10" TextColor="#fff" />
+						<!-- gestion des erreurs -->
+						<Text Value="{visualError}" Background="#FFF" Alignment="Center" TextWrapping="Wrap" TextAlignment="Center" Visibility="Collapsed" />
+
+						<TextInput PlaceholderText="Nom et prénom" PlaceholderColor="#000" Width="85%" Margin="0,40,0,0">
+							<Rectangle Layer="Background" Height="1" CornerRadius="5" Margin="0,25,0,0" Opacity=".5">
+								<Stroke Width="1" Brush="#000" />
+								<SolidColor Color="#000" Opacity="0.4" />
+							</Rectangle>
+						</TextInput>
+
+						<Material.Card Height="500" Width="95%">
+							<StackPanel>
+
+								<!--NativeViewHost Margin="0,30,0,0">
+									<DatePicker Width="85%" Height="100" Alignment="Center"  />
+								</NativeViewHost-->
+
+								<Button Text="Autres options" Alignment="Right" Margin="0,25,30,0">
+									<Clicked>
+										<Scale Factor=".9" Duration=".05" DurationBack=".1" />
+									</Clicked>
+								</Button>
+
+								<Rectangle Height="1" Width="90%" Alignment="BottomCenter" Background="#000" Margin="0,0,0,250" Visibility="Hidden" />
+								<Text Value="le numéro de recepicé est un code situé sur votre recepicé composé 9 chiffres. Ce numéro est unique et c'est grace a ce numéro que vous etes identifiable dans les serveurs des differents commissariat." TextWrapping="Wrap" Margin="15" FontSize="14" />
+							</StackPanel>
+						</Material.Card>
+						
+					</StackPanel>
+				</ScrollView>
+			</DockPanel>
+			
+			<!--StackPanel Alignment="BottomRight">
+				<Material.MiniActionButton Icon="Plus" />
+				<Material.ActionButton Icon="AccountSearch" />
+			</StackPanel-->
+
+		</DockPanel>
+	</Material.DrawerPanel>
+</Panel>

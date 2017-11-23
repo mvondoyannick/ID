@@ -1,0 +1,298 @@
+<Panel ux:Class="Fuse_MaterialDesign.cniView" Background="#FFF">
+	<!-- cette vue traites toutes les informations de la CNI -->
+	<Router ux:Dependency="router" />
+	<JavaScript File="CoreQuery.js" />
+	<JavaScript>
+		var Observable = require('FuseJS/Observable');
+		var nom = Observable("");
+		var prenom = Observable("");
+		var date = Observable("");
+		var phone = Observable("");
+		var sms = Observable(false);
+		var currentDate = new Date();
+		var container = Observable();
+
+		//variable pour la gestion des erreurs 
+		var visualError = Observable("");
+
+		/*envoi des informations vers le server ElasticSearch*/
+		function submit(){
+			debug_log("valeurs : "+nom.value+":"+currentDate.toString());
+			//debug_log("Liste que je viens de creer "+ container.add(nom) )
+
+			//on redirige les informations vers une nouvelle page
+			if (nom.value == "" || nom.value.lenght == 0) {
+				debug_log("les informations sont vides");
+				return visualError.value =" une erreur est survenue durant le traitement du formulaire";
+			} 
+			else {
+				debug_log("Submiting data to elasticSearch server");
+				//redirection et initialisation du routeur
+				router.push("ResponseView");
+			}
+			//router.push('ResponseView');
+		}
+
+		module.exports = {
+			nom:nom,
+			prenom:prenom,
+			date: date,
+			phone:phone,
+			sms: sms,
+			currentDate:currentDate,
+			submit:submit,
+			visualError:visualError
+		}
+	</JavaScript>
+	<!--Image Layer="Background" File="Images/background.jpg" StretchMode="UniformToFill" /-->
+	<Material.DrawerPanel>
+		<Material.Drawer ux:Binding="Drawer" Edge="Left">
+			<DockPanel Background="#fff">
+				<Panel Background="#fff" Height="50" Dock="Top">
+					<Text Alignment="Center" TextColor="#fff" Value="CONFIGURATION">
+						<DropShadow />
+					</Text>
+				</Panel>
+				<ScrollView>
+					<StackPanel ItemSpacing="25" Margin="30,20,0,0">
+						<Each Items="{panneauLateral}">
+							<Grid Columns="1*,100">
+								<Text Value="{name}" TextWrapping="Wrap" TextColor="#fff" Color="#fff" FontSize="18" />
+								<Material.AppBarIcon Icon="{icon}" Alignment="Center" Dock="Right" Margin="0,0,10,0" />
+							</Grid>
+						</Each>
+					</StackPanel>
+				</ScrollView>
+			</DockPanel>
+		</Material.Drawer>
+			
+		<DockPanel>
+			<!--Image Layer="Background" File="Images/background.jpg" StretchMode="UniformToFill" /-->
+			<Material.AppBar Dock="Top">
+				<Material.AppBarIcon Dock="Left" Icon="ChevronLeft" Clicked="{goBack}">
+					<Material.RippleResponseCircle />
+				</Material.AppBarIcon>
+				<Text Value="Rech. {name}" Alignment="Center" Color="#fff" FontSize="17" TextColor="#fff" />
+				<Material.AppBarIcon Dock="Right" Icon="Close" Clicked="{clear}">
+					<Material.RippleResponseCircle />
+				</Material.AppBarIcon>
+			</Material.AppBar>
+
+			<DockPanel>
+				<ScrollView>
+					<StackPanel ItemSpacing="10">
+
+						<!--Text Value="Salut! je suis pret a vous répondre." Alignment="Center" TextAlignment="Center" TextWrapping="Wrap" Margin="10" TextColor="#fff" /-->
+						<!-- gestion des erreurs -->
+						<Text Value="{visualError}" Background="#FFF" Alignment="Center" TextWrapping="Wrap" TextAlignment="Center" Visibility="Collapsed" />
+
+						<TextInput PlaceholderText="Nom et prénom" TextAlignment="Left" PlaceholderColor="#000" Width="90%" ux:Class="FormNewDesign" Opacity=".3" FontSize="18">
+							<Rectangle Layer="Background" Height="1" CornerRadius="5" Margin="0,25,0,0" Opacity=".3">
+								<Stroke Width="1" Brush="#000" />
+								<SolidColor Color="#000" Opacity="0.4" />
+							</Rectangle>
+
+						</TextInput>
+
+						<Match Value="{name}">
+							<Case String="Carte d'identités">
+								<Material.Card Height="220" Width="95%">
+									<StackPanel>
+										<FormNewDesign PlaceholderText="Numéro du recepicé" Value="{query}" MaxLength="15" TextColor="#000" Margin="0,30,0,0" />
+
+										<Button Text="Autres options" Alignment="Right" Margin="0,25,30,0" Clicked='{autreOption}'>
+											<Clicked>
+												<Scale Factor=".9" Duration=".05" DurationBack=".1" />
+											</Clicked>
+										</Button>
+
+										<FormNewDesign PlaceholderText="Numéro de téléphone" Value="{phoneNumber}" InputHint="Phone" MaxLength="9" TextColor="#000" Margin="0,30,0,0" />
+
+										<!-- le bouton de recherche -->
+										<StackPanel Alignment="CenterRight" Margin="0,25,10,0">
+											<Material.ActionButton Icon="AccountSearch" Clicked="{SearchRecepisse}" >
+												<WhilePressed>
+													<Scale Factor="1.5" />
+												</WhilePressed>
+											</Material.ActionButton>
+										</StackPanel>
+
+										<!--Each Items="{donnee}"> 
+											<Text Value="Mr {nom} {prenom} votre piece d'identité corespondante au recepice N° {recepice} est disponible au {localisation}" TextColor="#000" Alignment="Center" Margin="5" TextWrapping="Wrap" FontSize="20" />
+										</Each-->
+										<!--Text Value="Merci de nous faire confiance" Alignment="Center" Margin="20" /-->
+									</StackPanel>
+								</Material.Card>
+								<!--Text Value="bonjour" />
+								<Match Integer="{compteur}">
+									<Case String="0" >
+										<Text Value="rien" />
+									</Case>
+									<Case String="1">
+										<Material.Text Value="{nom}" />
+									</Case>
+								</Match-->
+								<Material.Card Height="200" Width="95%" Visibility="{visible}">
+									<StackPanel>
+										<Material.Text Value="Résultats recherche" Alignment="TopCenter" Margin="0,10,0,0" Opacity=".5" />
+										<Material.Text Value="Le compteur est {compteur}" Alignment="Center" TextColor="Red" />
+										<TextView Value="{TextContainer}" TextWrapping="Wrap" Alignment="Center"  FontSize="20" Margin="10,0,10,0"/>
+									</StackPanel>
+								</Material.Card>
+								<Material.Card Height="70" Width="95%" Background="#000" Color="#000">
+									<Grid Columns="70, 1*">
+										<Material.AppBarIcon Icon="Help" Alignment="Center" />
+										<Material.Text Value="Besoin d'aide?" Alignment="Center" Color="#000" TextColor="#fff" />
+									</Grid>
+								</Material.Card>
+							</Case>
+							<Case String="Passport">
+								<Material.Card Height="500" Width="95%">
+									<StackPanel>
+										<FormNewDesign PlaceholderText="Votre N° du recepicé du passport" Value="{nom}" MaxLength="9" TextColor="#000" />
+
+										<Button Text="Autres options" Alignment="Right" Margin="0,25,30,0">
+											<Clicked>
+												<Scale Factor=".9" Duration=".05" DurationBack=".1" />
+											</Clicked>
+										</Button>
+
+										<Rectangle Height="1" Width="90%" Alignment="BottomCenter" Background="#000" Margin="0,0,0,50" Visibility="Hidden" />
+										<Text Value="le numéro de recepicé obtenu durant l'tablissement de votre passport est un code situé sur votre recepicé composé 9 chiffres. Ce numéro est unique et c'est grace a ce numéro que vous etes identifiable dans les serveurs des differents commissariat." TextWrapping="Wrap" Margin="15" FontSize="14" />
+									</StackPanel>
+								</Material.Card>
+							</Case>
+							<Case String="Carte de séjour">
+								<Material.Card Height="500" Width="95%">
+									<StackPanel>
+										<FormNewDesign PlaceholderText="Votre N° du recepicé" Value="{nom}" MaxLength="9" TextColor="#000" />
+
+										<!--NativeViewHost Margin="0,30,0,0">
+											<DatePicker Width="85%" Height="100" Alignment="Center"  />
+										</NativeViewHost-->
+
+										<Button Text="Autres options" Alignment="Right" Margin="0,25,30,0">
+											<Clicked>
+												<Scale Factor=".9" Duration=".05" DurationBack=".1" />
+											</Clicked>
+										</Button>
+
+										<Rectangle Height="1" Width="90%" Alignment="BottomCenter" Background="#000" Margin="0,0,0,50" Visibility="Hidden" />
+										<Text Value="le numéro de recepicé est un code situé sur votre recepicé composé 9 chiffres. Ce numéro est unique et c'est grace a ce numéro que vous etes identifiable dans les serveurs des differents commissariat." TextWrapping="Wrap" Margin="15" FontSize="14" />
+									</StackPanel>
+								</Material.Card>
+							</Case>
+							<Case String="Visas">
+								<Material.Card Height="500" Width="95%">
+									<StackPanel>
+										<FormNewDesign PlaceholderText="Votre N° du recepicé" Value="{nom}" MaxLength="9" TextColor="#000" />
+
+										<!--NativeViewHost Margin="0,30,0,0">
+											<DatePicker Width="85%" Height="100" Alignment="Center"  />
+										</NativeViewHost-->
+
+										<Button Text="Autres options" Alignment="Right" Margin="0,25,30,0">
+											<Clicked>
+												<Scale Factor=".9" Duration=".05" DurationBack=".1" />
+											</Clicked>
+										</Button>
+
+										<Rectangle Height="1" Width="90%" Alignment="BottomCenter" Background="#000" Margin="0,0,0,50" Visibility="Hidden" />
+										<Text Value="le numéro de recepicé est un code situé sur votre recepicé composé 9 chiffres. Ce numéro est unique et c'est grace a ce numéro que vous etes identifiable dans les serveurs des differents commissariat." TextWrapping="Wrap" Margin="15" FontSize="14" />
+									</StackPanel>
+								</Material.Card>
+							</Case>
+							<Case String="Autorisations d'entrée">
+								<Material.Card Height="500" Width="95%">
+									<StackPanel>
+										<FormNewDesign PlaceholderText="N° recepicé autorisation" Value="{nom}" MaxLength="9" TextColor="#000" />
+
+										<!--NativeViewHost Margin="0,30,0,0">
+											<DatePicker Width="85%" Height="100" Alignment="Center"  />
+										</NativeViewHost-->
+
+										<Button Text="Autres options" Alignment="Right" Margin="0,25,30,0">
+											<Clicked>
+												<Scale Factor=".9" Duration=".05" DurationBack=".1" />
+											</Clicked>
+										</Button>
+
+										<Rectangle Height="1" Width="90%" Alignment="BottomCenter" Background="#000" Margin="0,0,0,50" Visibility="Hidden" />
+										<Text Value="le numéro de recepicé est un code situé sur votre recepicé composé 9 chiffres. Ce numéro est unique et c'est grace a ce numéro que vous etes identifiable dans les serveurs des differents commissariat." TextWrapping="Wrap" Margin="15" FontSize="14" />
+									</StackPanel>
+								</Material.Card>
+							</Case>
+							<Case String="Autorisation de séjour">
+								<Material.Card Height="500" Width="95%">
+									<StackPanel>
+										<FormNewDesign PlaceholderText="N° du recepicé Uatorisation carte séjour" Value="{nom}" MaxLength="9" TextColor="#000" />
+
+										<!--NativeViewHost Margin="0,30,0,0">
+											<DatePicker Width="85%" Height="100" Alignment="Center"  />
+										</NativeViewHost-->
+
+										<Button Text="Autres options" Alignment="Right" Margin="0,25,30,0">
+											<Clicked>
+												<Scale Factor=".9" Duration=".05" DurationBack=".1" />
+											</Clicked>
+										</Button>
+
+										<Rectangle Height="1" Width="90%" Alignment="BottomCenter" Background="#000" Margin="0,0,0,50" Visibility="Hidden" />
+										<Text Value="le numéro de recepicé est un code situé sur votre recepicé composé 9 chiffres. Ce numéro est unique et c'est grace a ce numéro que vous etes identifiable dans les serveurs des differents commissariat." TextWrapping="Wrap" Margin="15" FontSize="14" />
+									</StackPanel>
+								</Material.Card>
+							</Case>
+							<Case String="Acte de naissance">
+								<Material.Card Height="500" Width="95%">
+									<StackPanel>
+										<FormNewDesign PlaceholderText="Ne peux encore etre rechercher" Value="{nom}" MaxLength="9" TextColor="#000" />
+
+										<!--NativeViewHost Margin="0,30,0,0">
+											<DatePicker Width="85%" Height="100" Alignment="Center"  />
+										</NativeViewHost-->
+
+										<Button Text="Autres options" Alignment="Right" Margin="0,25,30,0">
+											<Clicked>
+												<Scale Factor=".9" Duration=".05" DurationBack=".1" />
+											</Clicked>
+										</Button>
+
+										<Rectangle Height="1" Width="90%" Alignment="BottomCenter" Background="#000" Margin="0,0,0,50" Visibility="Hidden" />
+										<Text Value="le numéro de recepicé est un code situé sur votre recepicé composé 9 chiffres. Ce numéro est unique et c'est grace a ce numéro que vous etes identifiable dans les serveurs des differents commissariat." TextWrapping="Wrap" Margin="15" FontSize="14" />
+									</StackPanel>
+								</Material.Card>
+							</Case>
+							<Case String="Permis de conduire">
+								<Material.Card Height="500" Width="95%">
+									<StackPanel>
+										<FormNewDesign PlaceholderText="Impossible de continuer, manque d'informations" Value="{nom}" MaxLength="9" TextColor="#000" />
+
+										<!--NativeViewHost Margin="0,30,0,0">
+											<DatePicker Width="85%" Height="100" Alignment="Center"  />
+										</NativeViewHost-->
+
+										<Button Text="Autres options" Alignment="Right" Margin="0,25,30,0">
+											<Clicked>
+												<Scale Factor=".9" Duration=".05" DurationBack=".1" />
+											</Clicked>
+										</Button>
+
+										<Rectangle Height="1" Width="90%" Alignment="BottomCenter" Background="#000" Margin="0,0,0,50" Visibility="Hidden" />
+										<Text Value="le numéro de recepicé est un code situé sur votre recepicé composé 9 chiffres. Ce numéro est unique et c'est grace a ce numéro que vous etes identifiable dans les serveurs des differents commissariat." TextWrapping="Wrap" Margin="15" FontSize="14" />
+									</StackPanel>
+								</Material.Card>
+							</Case>
+						</Match>
+						
+					</StackPanel>
+				</ScrollView>
+			</DockPanel>
+			
+			<!--StackPanel Alignment="BottomRight">
+				<Material.MiniActionButton Icon="Plus" />
+				<Material.ActionButton Icon="AccountSearch" />
+			</StackPanel-->
+
+		</DockPanel>
+	</Material.DrawerPanel>
+</Panel>

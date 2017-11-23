@@ -1,0 +1,5 @@
+<Panel ux:Class="Fuse_MaterialDesign.searchView">
+	<!-- permet de fournir les informations sur la recherche vocale et instantanée -->
+	<Router ux:Dependency="router" />
+	<JavaScript File="CoreQuery.js" />
+</Panel>

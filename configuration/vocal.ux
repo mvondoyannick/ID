@@ -1,0 +1,4 @@
+<Panel ux:Class="configuration.vocal">
+	<Router ux:Dependency="router" />
+	<JavaScript File="../CoreQuery.js" />
+</Panel>

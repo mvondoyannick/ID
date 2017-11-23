@@ -1,0 +1,4 @@
+<Panel ux:Class="Fuse_MaterialDesign.passportView">
+	<Router ux:Dependency="router" />
+	<JavaScript File="CoreQuery.js" />
+</Panel>

@@ -1,0 +1,64 @@
+<Panel ux:Class="Fuse_MaterialDesign.responseView">
+	<Router ux:Dependency="router" />
+	<JavaScript File="CoreQuery.js" />
+
+	<Material.DrawerPanel>
+		<Material.Drawer ux:Binding="Drawer" Edge="Left">
+			<DockPanel Background="#000">
+				<Panel Background="#000" Height="50" Dock="Top">
+					<Text Alignment="Center" TextColor="#fff" Value="CONFIGURATION">
+						<DropShadow />
+					</Text>
+				</Panel>
+				<ScrollView>
+					<StackPanel ItemSpacing="25" Margin="30,20,0,0">
+						<Each Items="{panneauLateral}">
+							<Grid Columns="1*,100">
+								<Text Value="{name}" TextWrapping="Wrap" TextColor="#fff" Color="#fff" FontSize="18" />
+								<Material.AppBarIcon Icon="{icon}" Alignment="Center" Dock="Right" Margin="0,0,10,0" />
+							</Grid>
+						</Each>
+					</StackPanel>
+				</ScrollView>
+			</DockPanel>
+		</Material.Drawer>
+			
+		<DockPanel>
+
+			<Material.AppBar Dock="Top">
+				<Material.AppBarIcon Dock="Left" Icon="ChevronLeft" Clicked="{goBack}" />
+				<Text Value="Traitement ..." Alignment="Center" Color="#fff" FontSize="17" TextColor="#fff" />
+				<Material.AppBarIcon Dock="Right" Icon="Menu" Clicked="{openDrawerPanel}" />
+			</Material.AppBar>
+
+			<!-- le bouton de recherche -->
+			<StackPanel Alignment="Bottom" Margin="0,0,0,40" Clicked="{gotoHome}">
+				<Grid ColumnCount="2">
+					<Rectangle Height="40" Background="#FFF" Width="150" CornerRadius="5">
+						<Material.Text Value="Annuler" Alignment="Center" />
+					</Rectangle>
+					<Rectangle Height="40" Background="#FFF" Width="150" CornerRadius="5">
+						<Material.Text Value="Notification SMS" Alignment="Center" />
+					</Rectangle>
+				</Grid>
+				<!--Material.ActionButton Icon="Check">
+					<WhilePressed>
+						<Scale Factor="1.5" />
+					</WhilePressed>
+				</Material.ActionButton-->
+			</StackPanel>
+
+
+			<DockPanel>
+				<ScrollView>
+					<StackPanel ItemSpacing="10">
+						<Text Value="Voici ce que nous avons trouvé sur" Alignment="Center" TextAlignment="Center" TextWrapping="Wrap" Margin="10" TextColor="#000" />
+						<Image File="Images/search.png" Alignment="Center" StretchMode="UniformToFill" Width="50" Height="50" />
+						<Material.Text Value="{name}" Alignment="Center" />
+					</StackPanel>
+				</ScrollView>
+			</DockPanel>
+
+		</DockPanel>
+	</Material.DrawerPanel>
+</Panel>

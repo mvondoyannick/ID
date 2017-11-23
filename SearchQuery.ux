@@ -1,0 +1,73 @@
+<Panel ux:Class="Fuse_MaterialDesign.SearchQuery">
+	<Router ux:Dependency="router" />
+	<JavaScript File="CoreQuery.js" />
+	<Material.DrawerPanel>
+		<Material.Drawer ux:Binding="Drawer" Edge="Left">
+			<Text Alignment="Center">Hello!</Text>
+		</Material.Drawer>
+			
+		<DockPanel>
+			<Image File="Images/background.jpg" Layer="Background" />
+			<Material.AppBar Dock="Top">
+				<Material.AppBarIcon Dock="Left" Icon="Menu" Clicked="{openDrawerPanel}" />
+				<Material.Text Value="Query interface" Alignment="Center" Color="#fff" FontSize="20" TextColor="#fff" />
+				<Material.AppBarIcon Dock="Right" Icon="FileFind" Clicked="{toggleMenu}" />
+				<Material.AppBarIcon Dock="Right" Icon="ChevronLeft" Clicked="{goBack}"  />
+			</Material.AppBar>
+
+			<!-- le contenu de l'application -->
+			<!--ScrollView>
+				<StackPanel>
+					<Image File="{picture}" StretchMode="UniformToFill" Height="100" Width="100%" Alignment="TopCenter">
+						<StackPanel />
+							<Material.Text Value="{name}" Alignment="Center" FontSize="40" />
+							<Material.Text Value="{description}" Alignment="Center" Margin="0,75,0,0" />
+						<DropShadow />
+					</Image>
+				</StackPanel>
+			</ScrollView-->
+			<ScrollView>
+				<StackPanel ItemSpacing="30">
+					<TextInput PlaceholderText="Que rechercher ..." ActionStyle="Search" AutoCapitalizationHint="Words" MaxLength="25" PlaceholderColor="#fff" TextColor="#fff" Value="{moi}" FontSize="20" Margin="0,30,0,0" InputHint="Integer" Width="85%" Padding="5,0,0,0">
+						<Material.AppBarIcon Icon="LoginVariant" Alignment="Right" />
+						<Rectangle Layer="Background" Height="50" CornerRadius="5">
+							<Stroke Width="1" Brush="#FFF" />
+							<SolidColor Color="#000" Opacity="0.4" />
+						</Rectangle>
+					</TextInput>
+					<NativeViewHost>
+						<DatePicker Height="50" Width="95%" />
+					</NativeViewHost>
+					<Button Height="25" Width="50%" Alignment="Center" Text="Rechercher" Clicked="{searchNow}" />
+					<Material.Text Value="Recherche concernant : {moi}" Alignment="Center" />
+					<WhileEmpty Items="{donnee}">
+						<Text Value="les informations sont vides" />
+					</WhileEmpty>
+				</StackPanel>
+					<WhileNotEmpty Items="{donnee}">
+						<Each Items="{donnee}">
+							<StackPanel ItemSpacing="15">
+								<Text Value="Status" TextColor="#FFF" Margin="25,0,0,0"  />
+								<Text Value="{status}" Margin="30,0,0,0" TextColor="#FFF" Alignment="Left" />
+								<Text Value="Nom" TextColor="#FFF" Margin="25,0,0,0" />
+								<Text Value="{name}" Margin="30,0,0,0" TextColor="#FFF" Alignment="Left" />
+								<Text Value="Prenom" TextColor="#FFF" Margin="25,0,0,0" />
+								<Text Value="{prenom}" Margin="30,0,0,0" TextColor="#FFF" Alignment="Left" />
+								<Text Value="N° recepicé" TextColor="#FFF" Margin="25,0,0,0" />
+								<Text Value="{recepice}" Margin="30,0,0,0" TextColor="#FFF" Alignment="Left" />
+								<Text Value="Localisation" TextColor="#FFF" Margin="25,0,0,0" />
+								<Text Value="{centre}" Margin="30,0,0,0" TextColor="#FFF" Alignment="Left" />
+								<Text Value="Ville" TextColor="#FFF" Margin="25,0,0,0" />
+								<Text Value="{ville}" Margin="30,0,0,0" TextColor="#FFF" Alignment="Left" />
+								<Text Value="Téléphone" TextColor="#FFF" Margin="25,0,0,0" />
+								<Text Value="{telephone}" Margin="30,0,0,0" TextColor="#FFF" Alignment="Left" />
+								<Text Value="Type piece" TextColor="#FFF" Margin="25,0,0,0" />
+								<Text Value="{type_piece}" Margin="30,0,0,0" TextColor="#FFF" Alignment="Left" />
+								<Rectangle Height="1" Background="#fff" Width="90%" />
+							</StackPanel>
+						</Each>
+					</WhileNotEmpty>
+			</ScrollView>
+		</DockPanel>
+	</Material.DrawerPanel>
+</Panel>
