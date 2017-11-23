@@ -1,0 +1,174 @@
+<Panel ux:Class="CFGView">
+	<Router ux:Dependency="router" />
+	<JavaScript File="../CoreQuery.js" />
+	<JavaScript File="../PanneauCore.js" />
+
+	<Material.DrawerPanel>
+		<Material.Drawer ux:Binding="Drawer" Edge="Left">
+			<DockPanel Background="#000">
+				<Panel Background="#000" Height="50" Dock="Top">
+					<Text Alignment="Center" TextColor="#fff" Value="CONFIGURATION">
+						<DropShadow />
+					</Text>
+				</Panel>
+				<ScrollView>
+					<StackPanel ItemSpacing="25" Margin="30,20,0,0">
+						<Each Items="{panneauLateral}">
+							<Grid Columns="1*,100">
+								<Text Value="{name}" TextWrapping="Wrap" TextColor="#fff" Color="#fff" FontSize="18" />
+								<Material.AppBarIcon Icon="{icon}" Alignment="Center" Dock="Right" Margin="0,0,10,0" />
+							</Grid>
+						</Each>
+					</StackPanel>
+				</ScrollView>
+			</DockPanel>
+		</Material.Drawer>
+			
+		<DockPanel>
+			<Material.AppBar Dock="Top">
+				<Material.AppBarIcon Dock="Left" Icon="ChevronLeft" Clicked="{goBack}" />
+				<Text Value="Configuration" Alignment="Center" Color="#fff" FontSize="17" TextColor="#fff" />
+				<Material.AppBarIcon Dock="Right" Icon="Menu" Clicked="{openDrawerPanel}" />
+			</Material.AppBar>
+
+			<!-- le bouton de recherche -->
+			<!--StackPanel Alignment="BottomCenter" Margin="0,0,0,40">
+				<Material.ActionButton Icon="Check">
+					<Clicked>
+						<Scale Factor="1.5" />
+					</Clicked>
+				</Material.ActionButton>
+			</StackPanel-->
+
+			<DockPanel>
+				<ScrollView>
+					<StackPanel ItemSpacing="10">
+						<Match Value="{name}">
+							<Case String="Configuration">
+								<StackPanel ItemSpacing="10">
+									<Material.Card Height="225" Width="95%">
+										<Text Value="Configuration" Alignment="Right"  Margin="0,20,20,0" />
+										<StackPanel ItemSpacing="20" Margin="0,80,0,0">
+											<Grid Columns="1*,100">
+												<Material.Text Value="Vibreur" Alignment="CenterLeft" Margin="20,0,0,0" />
+												<NativeViewHost>
+													<Switch />
+												</NativeViewHost>
+											</Grid>
+											<Grid Columns="1*,100">
+												<Material.Text Value="Dark Theme" Alignment="CenterLeft" Margin="20,0,0,0" />
+												<NativeViewHost>
+													<Switch />
+												</NativeViewHost>
+											</Grid>
+											<Grid Columns="1*,100">
+												<Material.Text Value="Vibreur" Alignment="CenterLeft" Margin="20,0,0,0" />
+												<NativeViewHost>
+													<Switch />
+												</NativeViewHost>
+											</Grid>
+										</StackPanel>
+									</Material.Card>
+									<Material.Card Height="225" Width="95%" Margin="0,0,0,60">
+										<Text Value="Luminosité en contraste" Alignment="Right"  Margin="0,20,20,0" />
+										<StackPanel ItemSpacing="20" Margin="0,80,0,0">
+											<Grid Columns="1*,100">
+												<Material.Text Value="Luminosité" Alignment="CenterLeft" Margin="20,0,0,0" />
+												<NativeViewHost>
+													<Switch />
+												</NativeViewHost>
+											</Grid>
+											<Grid Columns="1*,100">
+												<Material.Text Value="Activer la LED" Alignment="CenterLeft" Margin="20,0,0,0" />
+												<NativeViewHost>
+													<Switch />
+												</NativeViewHost>
+											</Grid>
+											<Grid Columns="1*,100">
+												<Material.Text Value="Couleur LED" Alignment="CenterLeft" Margin="20,0,0,0" />
+												<Circle Background="Red" Height="20" Width="20" Alignment="Right" Margin="0,0,15,0" />
+											</Grid>
+										</StackPanel>
+									</Material.Card>
+								</StackPanel>
+							</Case>
+							<Case String="Notification">
+								<Material.Card Height="250" Width="95%" >
+									<StackPanel ItemSpacing="30">
+										<Text Value="Notifications" Alignment="Right" Margin="0,0,0,20" />
+										<Grid Columns="1*,100">
+											<Material.Text Value="Vibreur" Alignment="CenterLeft" Margin="20,0,0,0" />
+											<NativeViewHost>
+												<Switch />
+											</NativeViewHost>
+										</Grid>
+										<Grid Columns="1*,100">
+											<Material.Text Value="Dark Theme" Alignment="CenterLeft" Margin="20,0,0,0" />
+											<NativeViewHost>
+												<Switch />
+											</NativeViewHost>
+										</Grid>
+										<Grid Columns="1*,100">
+											<Material.Text Value="Vibreur" Alignment="CenterLeft" Margin="20,0,0,0" />
+											<NativeViewHost>
+												<Switch />
+											</NativeViewHost>
+										</Grid>
+									</StackPanel>
+								</Material.Card>
+							</Case>
+							<Case String="Mon compte">
+								<Material.Card Height="250" Width="95%">
+									<StackPanel ItemSpacing="30">
+										<Material.Text Value="Mon compte et moi" Alignment="Right" Margin="0,10,20,0" />
+										<Image File="../Images/robot.png" Alignment="Center" StretchMode="UniformToFill" />
+										<Text Value="Ce compte n'a pas encore été configuré" Alignment="Center" TextWrapping="Wrap" Margin="20,0,20,0" TextAlignment="Center" />
+									</StackPanel>
+								</Material.Card>
+								<Material.Card Height="250" Width="95%">
+									<StackPanel ItemSpacing="30">
+										<Material.Text Value="Ouverture de compte" Alignment="Right" Margin="0,10,20,0" />
+										<Button Text="Ouvrir mon compte" Alignment="HorizontalCenter">
+										</Button>
+										<Button Text="Creer un nouveau compte" Alignment="HorizontalCenter">
+										</Button>
+									</StackPanel>
+								</Material.Card>
+							</Case>
+							<Case String="A propos">
+								<Material.Card Height="250" Width="95%">
+									<StackPanel ItemSpacing="30">
+										<Material.Text Value="A porpos de cette application" Margin="25,20,0,0" />
+										
+									</StackPanel>
+								</Material.Card>
+							</Case>
+							<Case String="Recherche vocale">
+								<Material.Card Height="250" Width="95%">
+									<StackPanel ItemSpacing="30">
+										<Material.Text Value="La recherche vocale" Margin="25,20,0,0" />
+										
+									</StackPanel>
+								</Material.Card>
+							</Case>
+							<Case String="Mise a jour">
+								<Material.Card Height="250" Width="95%">
+									<StackPanel ItemSpacing="30">
+										<Material.Text Value="Mise a jour" Margin="25,20,0,0" />
+										
+									</StackPanel>
+								</Material.Card>
+							</Case>
+						</Match>
+					</StackPanel>
+				</ScrollView>
+			</DockPanel>
+			
+			<!--StackPanel Alignment="BottomRight">
+				<Material.MiniActionButton Icon="Plus" />
+				<Material.ActionButton Icon="AccountSearch" />
+			</StackPanel-->
+
+		</DockPanel>
+	</Material.DrawerPanel>
+</Panel>

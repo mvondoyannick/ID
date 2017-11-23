@@ -1,0 +1,4 @@
+<Panel ux:Class="configuration.notifications">
+	<Router ux:Dependency="router" />
+	<JavaScript File="../CoreQuery.js" />
+</Panel>

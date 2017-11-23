@@ -1,0 +1,37 @@
+{
+  "RootNamespace":"",
+  "Packages": [
+  	"Fuse",
+  	"FuseJS",
+  	"Fuse.GeoLocation",
+  	"Fuse.Maps"
+  ],
+  "Includes": [
+    "*",
+    "Images/*.jpeg:Bundle",
+    "Images/*.png:Bundle",
+    "Images/*.jpg:Bundle"
+  ],
+  "Title":"ID Preview",
+  "Version": "0.0.2beta2",
+  "Android":{
+    "VersionName":"$(Version)",
+    "ApplicationLabel": "Hi Request",
+    "Description": "Aucune description pour le moment",
+    "Package": "com.idapp.org",
+    "PreviewPackage": "com.idapp.org.preview",
+    "Icons": {
+      "LDPI": "Images/36_36.png",
+      "MDPI": "Images/48_48.png",
+      "HDPI": "Images/72_72.png",
+      "XHDPI": "Images/96_96.png",
+      "XXHDPI": "Images/144_144.png",
+      "XXXHDPI": "Images/192_192.png"
+    }
+  },
+  "Description" : "Aucune pour le moment",
+  "Publisher" : "GraceOfGod",
+  "Mobile" : {
+    "Orientations": "Portrait"
+  }
+}

@@ -1,0 +1,26 @@
+<Panel ux:Class="Fuse_MaterialDesign.intermediaireView">
+	<TextInput ux:Class="Form" PlaceholderText="Votre prénom" PlaceholderColor="#fff" TextColor="#fff" FontSize="20" Margin="0,30,0,0" Width="85%" Padding="5,0,0,0">
+		<Material.AppBarIcon Icon="LoginVariant" Alignment="Right" />
+		<Rectangle Layer="Background" Height="50" CornerRadius="5">
+			<Stroke Width="1" Brush="#FFF" />
+			<SolidColor Color="#000" Opacity="0.4" />
+		</Rectangle>
+	</TextInput>
+
+	<!-- envoyer un SMS -->
+	<Grid Columns="1*,100" ux:Class="Sms" Width="80%" Margin="0,30,0,0">
+		<Text Value="M'envoyer un SMS" Alignment="Left" TextColor="#FFF" FontSize="20" />
+		<NativeViewHost>
+			<Switch Alignment="Right" Value="{sms}"> 
+			</Switch>
+		</NativeViewHost>
+	</Grid>
+
+	<Material.Card Width="95%" Height="200" ux:Class="Card">
+		<Grid Columns="200,1*">
+			<Image File="{picture}" StretchMode="UniformToFill" />
+			<Material.Text Value="bonjour" Alignment="Center" TextWrapping="Wrap" />
+		</Grid>
+	</Material.Card>
+</Panel>
+

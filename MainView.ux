@@ -1,0 +1,26 @@
+<App>
+	<ClientPanel>
+		<JavaScript>
+			//script d'initialisation des procedures
+			debug_log("Init rc.d");
+		</JavaScript>
+		<Router ux:Name="router" />
+		<Navigator DefaultPath="SplashView" >
+			<Fuse_MaterialDesign.HomeView ux:Template="home" router="router" />
+			<Fuse_MaterialDesign.SearchQuery ux:Template="QueryInterface" router="router" />
+			<Fuse_MaterialDesign.cniView ux:Template="cniView" router="router" />
+			<Fuse_MaterialDesign.passportView ux:Template="passportView" router="router" />
+			<Fuse_MaterialDesign.searchView ux:Template="searchView" router="router" />
+			<Fuse_MaterialDesign.TestView ux:Template="TestView" router="router" />
+			<Fuse_MaterialDesign.responseView ux:Template="ResponseView" router="router" />
+			<configuration.about ux:Template="About" router="router" />
+			<ID_Project.SplashView ux:Template="SplashView" router="router" />
+			<ID_Project_last.ConfigSmsView ux:Template="ConfigSmsView" router="router" />
+			<ID_Project_last.MapView ux:Template="MapView" router="router" />
+			<CFGView ux:Template="ConfigurationView" router="router" />
+			<AutreOptionView ux:Template="AutreOptionView" router="router" />
+			<configuration.about ux:Template="AboutView" router="router" />
+		</Navigator>
+	</ClientPanel>
+</App>
+

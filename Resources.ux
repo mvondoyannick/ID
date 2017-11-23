@@ -1,0 +1,11 @@
+<Panel ux:Class="Resources">
+	<Image ux:Class="Chat" File="Images/chat.png"/>
+	<Image ux:Class="Feed" File="Images/feed.png"/>
+	<Image ux:Class="Marker" File="Images/marker.png"/>
+	<Image ux:Class="Mountain" File="Images/mountain.png"/>
+	<Image ux:Class="MountainFill" File="Images/mountainFill.png" />
+	<Image ux:Class="Phone" File="Images/phone.png"/>
+	<Image ux:Class="PhoneHands" File="Images/phoneHands.png"/>
+	<Image ux:Class="Tags" File="Images/tags.png"/>
+	<Image ux:Class="Map" File="Images/map.png" />
+</Panel>
