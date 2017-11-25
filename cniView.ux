@@ -86,8 +86,8 @@
 						<!-- gestion des erreurs -->
 						<Text Value="{visualError}" Background="#FFF" Alignment="Center" TextWrapping="Wrap" TextAlignment="Center" Visibility="Collapsed" />
 
-						<TextInput PlaceholderText="Nom et prénom" TextAlignment="Left" PlaceholderColor="#000" Width="90%" ux:Class="FormNewDesign" Opacity=".3" FontSize="18">
-							<Rectangle Layer="Background" Height="1" CornerRadius="5" Margin="0,25,0,0" Opacity=".3">
+						<TextInput PlaceholderText="Nom et prénom" TextAlignment="Center" PlaceholderColor="#000" Width="90%" ux:Class="FormNewDesign" FontSize="18">
+							<Rectangle Layer="Background" Height="50" CornerRadius="5" Margin="0,0,0,0" Opacity=".5">
 								<Stroke Width="1" Brush="#000" />
 								<SolidColor Color="#000" Opacity="0.4" />
 							</Rectangle>
@@ -96,55 +96,42 @@
 
 						<Match Value="{name}">
 							<Case String="Carte d'identités">
-								<Material.Card Height="220" Width="95%">
-									<StackPanel>
-										<FormNewDesign PlaceholderText="Numéro du recepicé" Value="{query}" MaxLength="15" TextColor="#000" Margin="0,30,0,0" />
+								<Text Value="{errorResult}" TextColor="Red" Alignment="Center" Visibility="Visible" TextWrapping="Wrap" TextAlignment="Center" />
+									<Material.Card Height="220" Width="95%">
+											<StackPanel>
+												<FormNewDesign PlaceholderText="Numéro du recepicé" Value="{query}" MaxLength="15" TextColor="#000" Margin="0,30,0,0" />
 
-										<Button Text="Autres options" Alignment="Right" Margin="0,25,30,0" Clicked='{autreOption}'>
-											<Clicked>
-												<Scale Factor=".9" Duration=".05" DurationBack=".1" />
-											</Clicked>
-										</Button>
+												<Button Text="Autres options" Alignment="Right" Margin="0,25,30,0" Clicked='{autreOption}'>
+													<Clicked>
+														<Scale Factor=".9" Duration=".05" DurationBack=".1" />
+													</Clicked>
+												</Button>
 
-										<FormNewDesign PlaceholderText="Numéro de téléphone" Value="{phoneNumber}" InputHint="Phone" MaxLength="9" TextColor="#000" Margin="0,30,0,0" />
+												<FormNewDesign PlaceholderText="Numéro de téléphone" Value="{phoneNumber}" InputHint="Phone" MaxLength="9" TextColor="#000" Margin="0,30,0,0" />
 
-										<!-- le bouton de recherche -->
-										<StackPanel Alignment="CenterRight" Margin="0,25,10,0">
-											<Material.ActionButton Icon="AccountSearch" Clicked="{SearchRecepisse}" >
-												<WhilePressed>
-													<Scale Factor="1.5" />
-												</WhilePressed>
-											</Material.ActionButton>
-										</StackPanel>
+												<!-- le bouton de recherche -->
+												<StackPanel Alignment="CenterRight" Margin="0,25,10,0">
+													<Material.ActionButton Icon="AccountSearch" Clicked="{searchNow}" >
+														<WhilePressed>
+															<Scale Factor="1.5" />
+														</WhilePressed>
+													</Material.ActionButton>
+												</StackPanel>
 
-										<!--Each Items="{donnee}"> 
-											<Text Value="Mr {nom} {prenom} votre piece d'identité corespondante au recepice N° {recepice} est disponible au {localisation}" TextColor="#000" Alignment="Center" Margin="5" TextWrapping="Wrap" FontSize="20" />
-										</Each-->
-										<!--Text Value="Merci de nous faire confiance" Alignment="Center" Margin="20" /-->
-									</StackPanel>
-								</Material.Card>
-								<!--Text Value="bonjour" />
-								<Match Integer="{compteur}">
-									<Case String="0" >
-										<Text Value="rien" />
-									</Case>
-									<Case String="1">
-										<Material.Text Value="{nom}" />
-									</Case>
-								</Match-->
-								<Material.Card Height="200" Width="95%" Visibility="{visible}">
-									<StackPanel>
-										<Material.Text Value="Résultats recherche" Alignment="TopCenter" Margin="0,10,0,0" Opacity=".5" />
-										<Material.Text Value="Le compteur est {compteur}" Alignment="Center" TextColor="Red" />
-										<TextView Value="{TextContainer}" TextWrapping="Wrap" Alignment="Center"  FontSize="20" Margin="10,0,10,0"/>
-									</StackPanel>
-								</Material.Card>
-								<Material.Card Height="70" Width="95%" Background="#000" Color="#000">
-									<Grid Columns="70, 1*">
-										<Material.AppBarIcon Icon="Help" Alignment="Center" />
-										<Material.Text Value="Besoin d'aide?" Alignment="Center" Color="#000" TextColor="#fff" />
-									</Grid>
-								</Material.Card>
+												<!--Each Items="{donnee}"> 
+													<Text Value="Mr {nom} {prenom} votre piece d'identité corespondante au recepice N° {recepice} est disponible au {localisation}" TextColor="#000" Alignment="Center" Margin="5" TextWrapping="Wrap" FontSize="20" />
+												</Each-->
+												<!--Text Value="Merci de nous faire confiance" Alignment="Center" Margin="20" /-->
+											</StackPanel>
+										</Material.Card>
+								<Material.Card Height="300" Width="95%" Visibility="{visible}" Margin="0,0,0,50">
+										<TextView Value="{TextContainer}" TextWrapping="Wrap" Alignment="Center" TextAlignment="Center" FontSize="18" Margin="50"/>
+											<Text Value="M'envoyer un SMS contenant toutes les informations?" TextWrapping="Wrap" Alignment="BottomLeft" Margin="30" />
+											<NativeViewHost Alignment="BottomRight" Margin="20">
+												<Switch Alignment="Right" Value="{sms}"> 
+												</Switch>
+											</NativeViewHost>
+								</Material.Card >
 							</Case>
 							<Case String="Passport">
 								<Material.Card Height="500" Width="95%">
@@ -166,10 +153,6 @@
 								<Material.Card Height="500" Width="95%">
 									<StackPanel>
 										<FormNewDesign PlaceholderText="Votre N° du recepicé" Value="{nom}" MaxLength="9" TextColor="#000" />
-
-										<!--NativeViewHost Margin="0,30,0,0">
-											<DatePicker Width="85%" Height="100" Alignment="Center"  />
-										</NativeViewHost-->
 
 										<Button Text="Autres options" Alignment="Right" Margin="0,25,30,0">
 											<Clicked>

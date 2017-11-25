@@ -7,13 +7,13 @@
 	Timer.create(function() {
 	   console.log("This will run once, after 4 seconds");
 	   //router.goto("ResponseView");
-	   router.goBack();
-	}, 4000, false);
+	   router.goto('ResponseView');
+	}, 4000);
 
 	function startLoading(){
 		isBusy.activate();
 		setTimeout(function() {
-			isBusy.deactivate();
+			isBusy.activate();
 		}, 4000);
 	}
 

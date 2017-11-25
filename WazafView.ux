@@ -1,4 +1,4 @@
-<Panel ux:Class="Fuse_MaterialDesign.responseView">
+<Panel ux:Class="ID_Project_last_21_11_17.WazafView">
 	<Router ux:Dependency="router" />
 	<JavaScript File="CoreQuery.js" />
 
@@ -27,33 +27,19 @@
 
 			<Material.AppBar Dock="Top">
 				<Material.AppBarIcon Dock="Left" Icon="Home" Clicked="{gotoHome}" />
-				<Text Value="Traitement ..." Alignment="Center" Color="#fff" FontSize="17" TextColor="#fff" />
+				<Text Value="OOUUP's ..." Alignment="Center" Color="#fff" FontSize="17" TextColor="#fff" />
 				<Material.AppBarIcon Dock="Right" Icon="Menu" Clicked="{openDrawerPanel}" />
 			</Material.AppBar>
-
-			<!-- le bouton de recherche -->
-			<StackPanel Alignment="Bottom" Margin="0,0,0,40" Clicked="{gotoHome}">
-				<Grid ColumnCount="2">
-					<Rectangle Height="40" Background="#FFF" Width="150" CornerRadius="5">
-						<Material.Text Value="Annuler" Alignment="Center" />
-					</Rectangle>
-					<Rectangle Height="40" Background="#FFF" Width="150" CornerRadius="5">
-						<Material.Text Value="Notification SMS" Alignment="Center" />
-					</Rectangle>
-				</Grid>
-				<!--Material.ActionButton Icon="Check">
-					<WhilePressed>
-						<Scale Factor="1.5" />
-					</WhilePressed>
-				</Material.ActionButton-->
-			</StackPanel>
 
 
 			<DockPanel>
 				<ScrollView>
 					<StackPanel ItemSpacing="10">
-						<Text Value="Votre piece n'est pas encore disponible" Alignment="Center" TextAlignment="Center" TextWrapping="Wrap" Margin="10" TextColor="#000" />
-						<Image File="Images/search.png" Alignment="Center" StretchMode="UniformToFill" Width="50" Height="50" />
+						<Text Value="HUM...c'est tres embarassant car votre piece n'est pas encore disponible" Alignment="Center" TextAlignment="Center" TextWrapping="Wrap" Margin="10" TextColor="#000" />
+						<!-- <Material.AppBarIcon Icon="Google" Alignment="Center" Margin="0,0,0,20" /> -->
+						<Text Value="Souhaitez-vous etres notifier par SMS lorsque votre piece sera dsponible?" Alignment="Center" TextWrapping="Wrap" Margin="0,50,0,50" TextAlignment="Center" />
+						<FormNewDesign PlaceholderText="Votre N° de téléphone" InputHint="Phone" Value="{nom}" MaxLength="9" TextColor="#000" />
+						<Button Text="Notifiez-moi" Alignment="Center" Margin="0,25,0,0" />
 					</StackPanel>
 				</ScrollView>
 			</DockPanel>

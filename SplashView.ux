@@ -8,7 +8,7 @@
 		   console.log("This will run once, after 4 seconds");
 		   //router.goto("ResponseView");
 		   router.goto("home");
-		}, 4000, false);
+		}, 10000, false);
 
 		module.exports = {
 
