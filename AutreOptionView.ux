@@ -28,9 +28,18 @@
 			<!--Image Layer="Background" File="Images/background.jpg" StretchMode="UniformToFill" /-->
 			<Material.AppBar Dock="Top">
 				<Material.AppBarIcon Dock="Left" Icon="ChevronLeft" Clicked="{goBack}" />
-				<Text Value="Autres options de recherche" Alignment="Center" Color="#fff" FontSize="17" TextColor="#fff" />
-				<Material.AppBarIcon Dock="Right" Icon="Menu" Clicked="{openDrawerPanel}" />
+				<Text Value="Autres options de recherche" Alignment="CenterLeft" Color="#fff" FontSize="17" TextColor="#fff" />
+				<!-- le bouton de recherche -->
+				<StackPanel Alignment="TopRight" Margin="0,20,10,0">
+					<Material.ActionButton Icon="AccountSearch" Clicked="{searchNow}" >
+						<WhilePressed>
+							<Scale Factor="1.5" />
+						</WhilePressed>
+					</Material.ActionButton>
+				</StackPanel>
 			</Material.AppBar>
+
+			
 
 			<!-- le bouton de recherche -->
 			<!--StackPanel Alignment="BottomCenter" Margin="0,0,0,40">
@@ -60,6 +69,7 @@
 								<FormNewDesign PlaceholderText="Votre Nom et prenom" Value="{query}" MaxLength="9" TextColor="#000" Margin="0,30,0,0" />
 								<FormNewDesign PlaceholderText="Date de naissance" Value="{query}" MaxLength="9" TextColor="#000" Margin="0,30,0,0" />
 								<FormNewDesign PlaceholderText="Numéro de téléphone" Value="{query}" MaxLength="9" TextColor="#000" Margin="0,30,0,0" />
+
 								<Text Value="Selectionner votre date de naissance" Alignment="Left" Margin="20,20,0,0" />
 								<NativeViewHost Margin="0,0,0,0">
 									<DatePicker Width="80%"  />

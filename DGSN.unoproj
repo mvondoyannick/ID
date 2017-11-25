@@ -16,7 +16,7 @@
   "Version": "0.0.2beta2",
   "Android":{
     "VersionName":"$(Version)",
-    "ApplicationLabel": "Hi Request",
+    "ApplicationLabel": "ID",
     "Description": "Aucune description pour le moment",
     "Package": "com.idapp.org",
     "PreviewPackage": "com.idapp.org.preview",

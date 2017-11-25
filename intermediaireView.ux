@@ -8,7 +8,7 @@
 	</TextInput>
 
 	<!-- envoyer un SMS -->
-	<Grid Columns="1*,100" ux:Class="Sms" Width="80%" Margin="0,30,0,0">
+	<Grid Columns="1*,100" ux:Class="Sms" Width="80%">
 		<Text Value="M'envoyer un SMS" Alignment="Left" TextColor="#FFF" FontSize="20" />
 		<NativeViewHost>
 			<Switch Alignment="Right" Value="{sms}"> 
