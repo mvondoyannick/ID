@@ -3,8 +3,10 @@ var Timer = require('FuseJS/Timer');
 var Base64 = require('FuseJS/Base64');
 var Share = require("FuseJS/Share")
 var Storage = require("FuseJS/Storage");
+var Device = require('Device');
 
 debug_log("init CoreQuery Interface");
+console.log('Current device language: ' + Device.locale);
 
 /* les variables utilisées dans le systeme */
 var username = Observable();
@@ -276,6 +278,38 @@ function share(){
 
 }
 
+//obtenir toutes les informations sur le terminal
+function getDeviceInformation(){
+	if (Device.UUID == '') {
+      Device.getUUID().then(function(uuid) {
+          console.log('UUID: ' + uuid);
+          // output example:
+          // UUID: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+      }).catch(function(error) {
+          console.log('UUID error: ' + error);
+          // output example:
+          // UUID error: Permissions could not be requested or granted.
+      });
+  }
+  else {
+  	console.log('Current device language: ' + Device.locale); // format in BCP-47 for all mobile platforms
+    // output example: en-US
+
+    console.log('UUID:'                + Device.UUID);
+    // output example:
+    // UUID: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+
+    console.log('Vendor name: '        + Device.vendor);
+    console.log('Model name: '         + Device.model);
+    console.log('System: '             + Device.system);
+    console.log('System version: '     + Device.systemVersion);
+    console.log('System SDK ver: '     + Device.SDKVersion);
+    console.log('Logical processors: ' + Device.cores);
+    console.log('is retina?: '         + Device.isRetina);
+  }
+}
+
+
 //login a user tot application backend
 function Login(username, pwd, date){
 	localStorage.setItem('username', username);
@@ -357,6 +391,8 @@ function searchNow(){
 function LoginView(){
 
 }
+
+getDeviceInformation();
 
 module.exports = {
 	goBack: goBack,

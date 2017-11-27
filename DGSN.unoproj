@@ -8,6 +8,9 @@
     "Fuse.Vibration",
     "Fuse.Share"
   ],
+  "Projects": [
+    "fuse-device/device_include.unoproj"
+  ],
   "Includes": [
     "*",
     "Images/*.jpeg:Bundle",
