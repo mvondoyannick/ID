@@ -20,6 +20,8 @@
 			<CFGView ux:Template="ConfigurationView" router="router" />
 			<AutreOptionView ux:Template="AutreOptionView" router="router" />
 			<configuration.about ux:Template="AboutView" router="router" />
+			<ID.CreateAccountView ux:Template="SignUpView" router="router" />
+			<ID.LoginView ux:Template="LoginView" router="router" />
 		</Navigator>
 	</ClientPanel>
 </App>

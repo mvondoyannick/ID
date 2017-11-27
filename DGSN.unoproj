@@ -4,16 +4,19 @@
   	"Fuse",
   	"FuseJS",
   	"Fuse.GeoLocation",
-  	"Fuse.Maps"
+  	"Fuse.Maps",
+    "Fuse.Vibration",
+    "Fuse.Share"
   ],
   "Includes": [
     "*",
     "Images/*.jpeg:Bundle",
     "Images/*.png:Bundle",
-    "Images/*.jpg:Bundle"
+    "Images/*.jpg:Bundle",
+    "Videos/*.mp4:Bundle"
   ],
   "Title":"ID Preview",
-  "Version": "0.0.2beta2",
+  "Version": "0.0.2beta3",
   "Android":{
     "VersionName":"$(Version)",
     "ApplicationLabel": "Hi Request",

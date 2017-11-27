@@ -72,7 +72,7 @@
 				<Material.AppBarIcon Dock="Left" Icon="ChevronLeft" Clicked="{goBack}">
 					<Material.RippleResponseCircle />
 				</Material.AppBarIcon>
-				<Text Value="Rech. {name}" Alignment="Center" Color="#fff" FontSize="17" TextColor="#fff" />
+				<Text Value="Rech. {name}" Alignment="Center" Color="#fff" FontSize="17" TextColor="#fff" ux:Name="Header" />
 				<Material.AppBarIcon Dock="Right" Icon="Close" Clicked="{clear}">
 					<Material.RippleResponseCircle />
 				</Material.AppBarIcon>
@@ -96,6 +96,16 @@
 
 						<Match Value="{name}">
 							<Case String="Carte d'identités">
+								<Rectangle ux:Name="errorVisible" Color="#FFCDD2" Height="50" Width="95%" Alignment="Center" CornerRadius="3" Visibility="{errorVisible}">
+									<Tapped>
+										<!-- <Move Y="-100" Delay="1" Duration="1" /> -->
+										<!-- <Translation X="100" /> -->
+										<!-- <Set errorVisible.Opacity=".1" /> -->
+										<Set errorVisible.Visibility="Collapsed" />
+									</Tapped>
+									<Text Value="{errorResult}" Alignment="Center" Visibility="Visible" TextWrapping="Wrap" TextAlignment="Center" />
+									<DropShadow />
+								</Rectangle>
 								<Material.Card Height="220" Width="95%">
 									<StackPanel>
 										<FormNewDesign PlaceholderText="Numéro du recepicé" Value="{query}" MaxLength="15" TextColor="#000" Margin="0,30,0,0" />
@@ -110,7 +120,7 @@
 
 										<!-- le bouton de recherche -->
 										<StackPanel Alignment="CenterRight" Margin="0,25,10,0">
-											<Material.ActionButton Icon="AccountSearch" Clicked="{SearchRecepisse}" >
+											<Material.ActionButton Icon="AccountSearch" Clicked="{searchNow}" >
 												<WhilePressed>
 													<Scale Factor="1.5" />
 												</WhilePressed>

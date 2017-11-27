@@ -121,16 +121,16 @@
 								<Material.Card Height="250" Width="95%">
 									<StackPanel ItemSpacing="30">
 										<Material.Text Value="Mon compte et moi" Alignment="Right" Margin="0,10,20,0" />
-										<Image File="../Images/robot.png" Alignment="Center" StretchMode="UniformToFill" />
-										<Text Value="Ce compte n'a pas encore été configuré" Alignment="Center" TextWrapping="Wrap" Margin="20,0,20,0" TextAlignment="Center" />
+										<Image File="../Images/robot.png" Alignment="Center" StretchMode="UniformToFill" Width="64" Height="64" />
+										<Text Value="Ce compte n'a pas encore été configuré" Alignment="BottomCenter" TextWrapping="Wrap" Margin="0,0,0,0" TextAlignment="Center" />
 									</StackPanel>
 								</Material.Card>
 								<Material.Card Height="250" Width="95%">
 									<StackPanel ItemSpacing="30">
 										<Material.Text Value="Ouverture de compte" Alignment="Right" Margin="0,10,20,0" />
-										<Button Text="Ouvrir mon compte" Alignment="HorizontalCenter">
+										<Button Text="Ouvrir mon compte" Alignment="HorizontalCenter" Clicked="{logIn}">
 										</Button>
-										<Button Text="Creer un nouveau compte" Alignment="HorizontalCenter">
+										<Button Text="Creer un nouveau compte" Alignment="HorizontalCenter" Clicked="{SignUp}">
 										</Button>
 									</StackPanel>
 								</Material.Card>
