@@ -4,11 +4,16 @@ var Base64 = require('FuseJS/Base64');
 var Share = require("FuseJS/Share")
 var Storage = require("FuseJS/Storage");
 var Device = require('Device');
+var cameraRoll = require("FuseJS/CameraRoll");
+var camera = require("FuseJS/Camera");
+var Vibration = require("FuseJS/Vibration");
 
-debug_log("init CoreQuery Interface");
-console.log('Current device language: ' + Device.locale);
+debug_log("Current unix date : "+Date.now());
+//console.log('Current device language: ' + Device.locale);
 
 /* les variables utilisées dans le systeme */
+checked = Observable('\uf05d');
+failed = Observable('\uf06a');
 var username = Observable();
 var pwd = Observable();
 var error = Observable();
@@ -22,6 +27,7 @@ var donnee = Observable("salut");
 var query = Observable();
 var phone = Observable("");
 var errorResult = Observable();
+var imgPath = Observable();
 
 /*les informations sur l'application et le versionning*/
 var appName = "ID"; //le nom de l'application
@@ -113,11 +119,68 @@ clear = (function(){
 	compteur.value = "";
 	compteur.clear();
 	visible.value = "Collapsed";
-
 });
 
+//gestion de la capture du code barre
+function ScanRecepisse(){
+	console.log("Picture starded");
+	camera.takePicture(640, 480)
+		.then(function(image) {
+			return cameraRoll.publishImage(image);
+			console.log(JSON.stringify(image));
+		})
+		.then(function() {
+			// Will be called if the image was successfully added to the camera roll.
+			console.log(JSON.stringify(image));
+			imgPath.value = image.path;
+			status.value = "Visible";
+		}, function(error) {
+			console.log("Une erreur est survenue durant la capture : "+error);
+	});
+}
+
+
+//fonction user data
+var userData = {
+	name : "0",
+	secondName : "",
+	phone : "",
+	email : "",
+	phoneBrand : "",
+	image : "",
+
+	describeUser : function() {
+		var description = {
+			"name" : this.name,
+			"prenom" : this.prenom,
+			"phone" : this.phone,
+			"email" : this.email,
+			"phoneBrand" : this.phoneBrand,
+			"image" : this.image
+		}
+
+		return description;
+	}
+}
+
+
+//creation d'un nouvel objet user
+var user = Object.create(userData);
+user.name = "MVONDO";
+user.prenom = "Yannick";
+user.phone = "691451189";
+user.email = "m@m.com";
+user.phoneBrand = Device.system;
+user.image = "";
+
 //fonction pour capturer le numéro telephone
-/*CapturePhone = (function(name, phone, date, init_date){
+var phoneData = {
+
+}
+function ScanCode(){
+
+}
+CapturePhone = (function(name, phone, date, init_date){
 	debug_log("Capture du numéro de télephone ...");
 	this.name = name;
 	this.numero = phone;
@@ -126,16 +189,7 @@ clear = (function(){
 	debug_log(name+"--"+phone+"--"+date+"--"+init_date)
 });
 
-//CapturePhone("mvondo", 691451189, "11/11/17", "11/11/17");
-
-SendSms = (function(recepisse, phone, date, frequency) {
-	debug_log("Envoi du SMS ...");
-	date = new Date();
-	this.recepisse = recepisse,
-	this.phone = phone,
-	this.date = date,
-	this.frequency = frequency
-});*/
+/*CapturePhone("mvondo", 691451189, "11/11/17", "11/11/17"); */
 
 
 //la route pour charger about
@@ -203,17 +257,6 @@ function SignUp(){
 	router.push("SignUpView");
 }
 
-//la vue qui est en charge de la response s'une requete
-/*function requestResponse() {
-	router.goto("ResponseView");
-}*/
-
-//redirection vers testView
-/*function testView(){
-	debug_log('reste de la route');
-	router.push("TestView");
-}*/
-
 //fonction de retour
 function goBack(){
 	router.goBack();
@@ -229,55 +272,21 @@ function autreOption(){
 	router.push("AutreOptionView");
 }
 
-/*nouvelle fonction de recherche de recepisse*/
-/*function recherche(r){
-	fetch("http://fe6c4f62.ngrok.io/app/cni/_search?q=recepice:"+r)
-	.then(function(response){
-		if (response.status !== 200) {
-			//retourner un message d'erreur si la connexion internet venait a partir
-			errorResult.value = "Ouup's, une erreur est survenue. "+ response.status;
-			return;
-		}
-		response.json().then(function(d){
-			debug_log(JSON.stringify(d));
-			if (data.hits.total == 1) {
-				debug_log("nous avons trouvé "+d.hits.total+" occurence");
-			    TextContainer.value = "disponible";
-			    debug_log("result : Il ya un résultat : "+compteur.value+" et sa valeur est "+JSON.stringify(d.hits.hits[0]._source.nom));
-			    debug_log("tous les resultats :  "+JSON.stringify(d.hits.hits[0]));
-			    return;
-			}
-			if (data.hits.total == 0) {
-				debug_log("nous avons trouvé "+d.hits.total+" occurence");
-			    TextContainer.value = "disponible";
-			    debug_log("result : Il ya un résultat : "+compteur.value+" et sa valeur est "+JSON.stringify(d.hits.hits[0]._source.nom));
-			    debug_log("tous les resultats :  "+JSON.stringify(d.hits.hits[0]));
-			    return;
-			}
-		})
-	})
-}*/
-
-/*function permettant de rendre la zone d'erreur visible ou pas*/
-/*function SetErrorVisible(status){
-	debug_log("Le status est maintenant : "+status);
-	if (status === "Visible") {
-		//on cree un timer d'une durée de 4 secondes
-		Timer.create(function() {
-		  console.log("This will run once, after 4 seconds");
-		}, 4000, false);
-		status = "Collapsed";
-	}
-	else {
-
-	}
-}*/
 
 //share content
 function share(){
 
 }
 
+//redirection vers la notification
+function MeNotifierView(){
+	router.push('MeNotifierView');
+}
+
+//renvoyer vers la vue permettant de scanner un recepisse
+function ScanRecepisseView(){
+	router.push('ScanRecepisseView');
+}
 //obtenir toutes les informations sur le terminal
 function getDeviceInformation(){
 	if (Device.UUID == '') {
@@ -299,13 +308,13 @@ function getDeviceInformation(){
     // output example:
     // UUID: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 
-    console.log('Vendor name: '        + Device.vendor);
+    /*console.log('Vendor name: '        + Device.vendor);
     console.log('Model name: '         + Device.model);
     console.log('System: '             + Device.system);
     console.log('System version: '     + Device.systemVersion);
     console.log('System SDK ver: '     + Device.SDKVersion);
     console.log('Logical processors: ' + Device.cores);
-    console.log('is retina?: '         + Device.isRetina);
+    console.log('is retina?: '         + Device.isRetina);*/
   }
 }
 
@@ -337,7 +346,7 @@ function SearchRecepisse(r){
 	//SetErrorVisible(errorVisible.value);
 	clear();
 	debug_log("le recepisse : "+r);
-		fetch("http://65d6ec6a.ngrok.io/app/cni/_search?q=recepice:"+r).then(function(response){
+		fetch("http://10b588f6.ngrok.io/app/cni/_search?q=recepice:"+r).then(function(response){
 			if (response.status !== 200) {
 				//retourner un message d'erreur si la connexion internet venait a partir
 				errorVisible.value = "Visible";
@@ -349,15 +358,17 @@ function SearchRecepisse(r){
 				debug_log(JSON.stringify(data));
 				if (data.hits.total == 1) {
 					visible.value = "Visible";
-					debug_log("nous avons trouvé "+data.hits.total+" occurence");
+					Vibration.vibrate(0.8);
+					/*debug_log("nous avons trouvé "+data.hits.total+" occurence");*/
 				    TextContainer.value = "Votre piece d'identité \n est disponible";
-				    debug_log("result : Il ya un résultat : "+compteur.value+" et sa valeur est "+JSON.stringify(data.hits.hits[0]._source.nom));
-				    debug_log("tous les resultats :  "+JSON.stringify(data.hits.hits[0]));
+				    /*debug_log("result : Il ya un résultat : "+compteur.value+" et sa valeur est "+JSON.stringify(data.hits.hits[0]._source.nom));
+				    debug_log("tous les resultats :  "+JSON.stringify(data.hits.hits[0]));*/
 				    return;
 				}else {
 					visible.value = "Visible";
-					debug_log("Bonjour");
-					TextContainer.value = "Il n'y a rien pour toi "+r+" \n est indisponible";
+					Vibration.vibrate(0.8);
+					/*debug_log("Bonjour");*/
+					TextContainer.value = "Aucune information ne correspond à votre recherche \n"+r;
 				}
 
 			})
@@ -424,5 +435,10 @@ module.exports = {
 	errorVisible: errorVisible,
 	LoginView: LoginView,
 	logIn: logIn,
-	SignUp: SignUp
+	SignUp: SignUp,
+	checked: checked,
+	failed: failed,
+	ScanRecepisse:ScanRecepisse,
+	MeNotifierView:MeNotifierView,
+	ScanRecepisseView:ScanRecepisseView
 };

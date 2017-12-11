@@ -72,7 +72,7 @@
 				<BodyText FontSize="16" Margin="50,20,50,50">
 					When not busy with UX and design, Michael is a board game enthusiast who has collected more than his fair share of classic and contemporary board games. His two daughters are not allowed anywhere near his vintage sets though.
 				</BodyText>
-				<Button Text="Quitter" Alignment="HorizontalCenter" Margin="0,0,0,30">
+				<Button Text="Quitter" Alignment="HorizontalCenter" Margin="0,0,0,30" Clicked="{goBack}">
 					<Rectangle Layer="Background" Height="45" Width="100" CornerRadius="5" Background="#E1E1E1" />
 				</Button>
 			</StackPanel>

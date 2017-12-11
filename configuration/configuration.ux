@@ -31,15 +31,6 @@
 				<Material.AppBarIcon Dock="Right" Icon="Menu" Clicked="{openDrawerPanel}" />
 			</Material.AppBar>
 
-			<!-- le bouton de recherche -->
-			<!--StackPanel Alignment="BottomCenter" Margin="0,0,0,40">
-				<Material.ActionButton Icon="Check">
-					<Clicked>
-						<Scale Factor="1.5" />
-					</Clicked>
-				</Material.ActionButton>
-			</StackPanel-->
-
 			<DockPanel>
 				<ScrollView>
 					<StackPanel ItemSpacing="10">
@@ -93,35 +84,30 @@
 								</StackPanel>
 							</Case>
 							<Case String="Notification">
-								<Material.Card Height="250" Width="95%" >
+								<Material.Card Height="180" Width="95%" Margin="0,10,0,0" >
 									<StackPanel ItemSpacing="30">
-										<Text Value="Notifications" Alignment="Right" Margin="0,0,0,20" />
+										<Text Value="Notifications" Alignment="Right" Margin="0,10,10,20" />
 										<Grid Columns="1*,100">
-											<Material.Text Value="Vibreur" Alignment="CenterLeft" Margin="20,0,0,0" />
-											<NativeViewHost>
-												<Switch />
-											</NativeViewHost>
-										</Grid>
-										<Grid Columns="1*,100">
-											<Material.Text Value="Dark Theme" Alignment="CenterLeft" Margin="20,0,0,0" />
-											<NativeViewHost>
-												<Switch />
-											</NativeViewHost>
-										</Grid>
-										<Grid Columns="1*,100">
-											<Material.Text Value="Vibreur" Alignment="CenterLeft" Margin="20,0,0,0" />
+											<Material.Text Value="Activer les notifications sur ce terminal" TextWrapping="Wrap" Alignment="CenterLeft" Margin="20,0,0,0" />
 											<NativeViewHost>
 												<Switch />
 											</NativeViewHost>
 										</Grid>
 									</StackPanel>
 								</Material.Card>
+								<Material.Text Value="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+								cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+								proident, sunt in culpa qui officia deserunt mollit anim id est laborum." TextWrapping="Wrap" Margin="25" Opacity=".5" />
+								<Text Font="FontAwesome" Value="&#xf0f3;" FontSize="40" TextColor="#000" TextAlignment="Center" Alignment="Center" />
 							</Case>
 							<Case String="Mon compte">
-								<Material.Card Height="250" Width="95%">
+								<Material.Card Height="250" Width="95%" Margin="0,10,0,0">
 									<StackPanel ItemSpacing="30">
 										<Material.Text Value="Mon compte et moi" Alignment="Right" Margin="0,10,20,0" />
-										<Image File="../Images/robot.png" Alignment="Center" StretchMode="UniformToFill" Width="64" Height="64" />
+										<Text Font="FontAwesome" Value="&#xf2be;" FontSize="60" TextColor="#000" TextAlignment="Center" Alignment="Center" />
 										<Text Value="Ce compte n'a pas encore été configuré" Alignment="BottomCenter" TextWrapping="Wrap" Margin="0,0,0,0" TextAlignment="Center" />
 									</StackPanel>
 								</Material.Card>
@@ -134,6 +120,11 @@
 										</Button>
 									</StackPanel>
 								</Material.Card>
+								<Material.Text Value="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+								consequat." TextWrapping="Wrap" Margin="25" Opacity=".5" />
+								<Text Font="FontAwesome" Value="&#xf2be;" FontSize="40" TextColor="#000" TextAlignment="Center" Alignment="Center" Margin="0,0,0,20" />
 							</Case>
 							<Case String="A propos">
 								<Material.Card Height="250" Width="95%">
@@ -144,17 +135,27 @@
 								</Material.Card>
 							</Case>
 							<Case String="Recherche vocale">
-								<Material.Card Height="250" Width="95%">
+								<Material.Card Height="200" Width="95%" Margin="0,10,0,0">
 									<StackPanel ItemSpacing="30">
-										<Material.Text Value="La recherche vocale" Margin="25,20,0,0" />
-										
+										<Material.Text Value="La recherche vocale" Alignment="Right" Margin="0,10,20,0" />
+										<Text Font="FontAwesome" ux:Name="t" Value="&#xf131;" FontSize="50" TextColor="#000" TextAlignment="Center" Alignment="Center" Margin="0,30,0,0">
+											<Tapped>
+												<Scale Factor="1.7" Duration=".4" Easing="ElasticIn" EasingBack="ElasticInOut" />
+												<Change t.TextColor="Red" Duration=".5" />
+											</Tapped>
+										</Text>
 									</StackPanel>
 								</Material.Card>
+								<Material.Text Value="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+								consequat." TextWrapping="Wrap" Margin="25" Opacity=".5" />
+								<Text Font="FontAwesome" Value="&#xf131;" FontSize="40" TextColor="#000" TextAlignment="Center" Alignment="Center" Margin="0,0,0,20" />
 							</Case>
 							<Case String="Mise a jour">
-								<Material.Card Height="250" Width="95%">
+								<Material.Card Height="200" Width="95%" Margin="0,10,0,0">
 									<StackPanel ItemSpacing="30">
-										<Material.Text Value="Mise a jour" Margin="25,20,0,0" />
+										<Material.Text Value="Mise a jour" Alignment="Right" Margin="0,10,20,0" />
 										
 									</StackPanel>
 								</Material.Card>

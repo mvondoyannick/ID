@@ -32,42 +32,42 @@
 				<Material.AppBarIcon Dock="Right" Icon="Menu" Clicked="{openDrawerPanel}" />
 			</Material.AppBar>
 
-			<!-- le bouton de recherche -->
-			<!--StackPanel Alignment="BottomCenter" Margin="0,0,0,40">
-				<Material.ActionButton Icon="Check" Clicked="{searchNow}">
-					<WhilePressed>
-						<Scale Factor="1.5" />
-					</WhilePressed>
-				</Material.ActionButton>
-			</StackPanel-->
-
-
-
 			<DockPanel>
 				<ScrollView>
 					<StackPanel ItemSpacing="10">
-						<!--Material.Card Width="100%" Height="100">
-							<Image File="{picture}" StretchMode="UniformToFill" >
-								<Text Value="{description}" Alignment="Center" TextWrapping="Wrap" TextAlignment="Center" TextColor="#fff" />
-							</Image>
-						</Material.Card-->
-						<!--Text Value="Salut! je suis pret a vous répondre." Alignment="Center" TextAlignment="Center" TextWrapping="Wrap" Margin="10" TextColor="#fff" /-->
-						<!-- gestion des erreurs -->
-						<!--Text Value="{visualError}" Background="#FFF" Alignment="Center" TextWrapping="Wrap" TextAlignment="Center" Visibility="Collapsed" /-->
-
-						<Material.Card Height="700" Width="95%" Margin="0,10,0,50">
+						<Material.Card Height="350" Width="95%" Margin="0,10,0,0">
+							<Circle Height="54" Width="54" Fill="Green" Margin="0,0,20,-25" Alignment="BottomRight">
+								<Material.RippleResponseCircle />
+								<Tapped>
+									<Scale Factor="1.7" Duration=".4" Easing="BounceIn" EasingBack="BounceInOut" DurationBack=".2" />
+								</Tapped>
+								<Text Font="FontAwesome" Alignment="Center" TextColor="#FFF" FontSize="25">&#xf002;</Text>
+								<DropShadow />
+							</Circle>
 							<StackPanel ItemSpacing="25">
-								<FormNewDesign PlaceholderText="Votre Nom et prenom" Value="{query}" MaxLength="9" TextColor="#000" Margin="0,30,0,0" />
-								<FormNewDesign PlaceholderText="Date de naissance" Value="{query}" MaxLength="9" TextColor="#000" Margin="0,30,0,0" />
-								<FormNewDesign PlaceholderText="Numéro de téléphone" Value="{query}" MaxLength="9" TextColor="#000" Margin="0,30,0,0" />
-								<Text Value="Selectionner votre date de naissance" Alignment="Left" Margin="20,20,0,0" />
-								<NativeViewHost Margin="0,0,0,0">
-									<DatePicker Width="80%"  />
-								</NativeViewHost>
-
+								<Grid Columns="60,1*">
+									<Text Font="FontAwesome" Alignment="BottomCenter" FontSize="25">&#xf2be;</Text>
+									<FormNewDesign PlaceholderText="Votre Nom et prenom" Value="{query}" MaxLength="9" Width="100%" TextColor="#000" Margin="0,30,20,0" />
+								</Grid>
+								<Grid Columns="60,1*">
+									<Text Font="FontAwesome" Alignment="BottomCenter" FontSize="25">&#xf133;</Text>
+									<FormNewDesign Width="100%" PlaceholderText="Date de naissance" Value="{query}" MaxLength="9" TextColor="#000" Margin="0,30,20,0" />
+								</Grid>
+								<Grid Columns="60,1*">
+									<Text Font="FontAwesome" Alignment="BottomCenter" FontSize="40">&#xf10b;</Text>
+									<FormNewDesign Width="100%" PlaceholderText="Numéro de téléphone" Value="{query}" MaxLength="9" TextColor="#000" Margin="0,30,20,0" />
+								</Grid>
+								<Grid Columns="60,1*">
+									<Text Font="FontAwesome" Alignment="BottomCenter" FontSize="35">&#xf017;</Text>
+									<FormNewDesign Width="100%" PlaceholderText="Date de creation" Value="{query}" MaxLength="9" TextColor="#000" Margin="0,30,20,0" />
+								</Grid>
 							</StackPanel>
 						</Material.Card>
-						
+						<Material.Text Value="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+								cillum dolore eu fugiat nulla pariatur." Margin="25" TextWrapping="Wrap" Opacity=".6" />
 					</StackPanel>
 				</ScrollView>
 			</DockPanel>

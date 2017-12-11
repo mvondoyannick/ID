@@ -6,7 +6,10 @@
   	"Fuse.GeoLocation",
   	"Fuse.Maps",
     "Fuse.Vibration",
-    "Fuse.Share"
+    "Fuse.Share",
+    "Fuse.CameraRoll",
+    "Fuse.Camera",
+    "Fuse.Controls.CameraView"
   ],
   "Projects": [
     "fuse-device/device_include.unoproj"

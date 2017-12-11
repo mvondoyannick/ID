@@ -73,7 +73,23 @@
 					<Material.RippleResponseCircle />
 				</Material.AppBarIcon>
 				<Text Value="Rech. {name}" Alignment="Center" Color="#fff" FontSize="17" TextColor="#fff" ux:Name="Header" />
+				<Material.AppBarIcon Dock="Right" Icon="Qrcode" Clicked="{ScanRecepisseView}">
+					<Material.RippleResponseCircle />
+				</Material.AppBarIcon>
 				<Material.AppBarIcon Dock="Right" Icon="Close" Clicked="{clear}">
+					<Material.RippleResponseCircle />
+				</Material.AppBarIcon>
+			</Material.AppBar>
+
+			<Material.AppBar Dock="Bottom">
+				<Text Value="Besoin d'aide?" Alignment="Center" Color="#fff" FontSize="17" TextColor="#fff" />
+				<Material.AppBarIcon Dock="Right" Icon="Help">
+					<Material.RippleResponseCircle />
+				</Material.AppBarIcon>
+				<Material.AppBarIcon Dock="Right" Icon="Book">
+					<Material.RippleResponseCircle />
+				</Material.AppBarIcon>
+				<Material.AppBarIcon Dock="Right" Icon="CallMade">
 					<Material.RippleResponseCircle />
 				</Material.AppBarIcon>
 			</Material.AppBar>
@@ -81,80 +97,77 @@
 			<DockPanel>
 				<ScrollView>
 					<StackPanel ItemSpacing="10">
-
-						<!--Text Value="Salut! je suis pret a vous répondre." Alignment="Center" TextAlignment="Center" TextWrapping="Wrap" Margin="10" TextColor="#fff" /-->
-						<!-- gestion des erreurs -->
 						<Text Value="{visualError}" Background="#FFF" Alignment="Center" TextWrapping="Wrap" TextAlignment="Center" Visibility="Collapsed" />
-
 						<TextInput PlaceholderText="Nom et prénom" TextAlignment="Left" PlaceholderColor="#000" Width="90%" ux:Class="FormNewDesign" Opacity=".3" FontSize="18">
 							<Rectangle Layer="Background" Height="1" CornerRadius="5" Margin="0,25,0,0" Opacity=".3">
 								<Stroke Width="1" Brush="#000" />
 								<SolidColor Color="#000" Opacity="0.4" />
 							</Rectangle>
-
 						</TextInput>
 
 						<Match Value="{name}">
 							<Case String="Carte d'identités">
 								<Rectangle ux:Name="errorVisible" Color="#FFCDD2" Height="50" Width="95%" Alignment="Center" CornerRadius="3" Visibility="{errorVisible}">
 									<Tapped>
-										<!-- <Move Y="-100" Delay="1" Duration="1" /> -->
-										<!-- <Translation X="100" /> -->
-										<!-- <Set errorVisible.Opacity=".1" /> -->
 										<Set errorVisible.Visibility="Collapsed" />
 									</Tapped>
 									<Text Value="{errorResult}" Alignment="Center" Visibility="Visible" TextWrapping="Wrap" TextAlignment="Center" />
 									<DropShadow />
 								</Rectangle>
-								<Material.Card Height="220" Width="95%">
+								<Material.Card Height="170" Width="95%">
 									<StackPanel>
-										<FormNewDesign PlaceholderText="Numéro du recepicé" Value="{query}" MaxLength="15" TextColor="#000" Margin="0,30,0,0" />
-
-										<Button Text="Autres options" Alignment="Right" Margin="0,25,30,0" Clicked='{autreOption}'>
+										<Grid Columns="60, 1*" >
+											<Text Font="FontAwesome" Value="&#xf2c2;" Alignment="BottomCenter" FontSize="25" Margin="0,0,0,-10" />
+											<FormNewDesign PlaceholderText="Numéro du recepicé" Width="100%" Value="{query}" MaxLength="15" TextColor="#000" Margin="0,50,20,0" />
+									</Grid>
+										<Button Text="Autres options" Alignment="Right" Margin="0,25,30,0" Clicked='{autreOption}' Visibility="Hidden">
 											<Clicked>
 												<Scale Factor=".9" Duration=".05" DurationBack=".1" />
 											</Clicked>
 										</Button>
 
-										<FormNewDesign PlaceholderText="Numéro de téléphone" Value="{phoneNumber}" InputHint="Phone" MaxLength="9" TextColor="#000" Margin="0,30,0,0" />
-
 										<!-- le bouton de recherche -->
-										<StackPanel Alignment="CenterRight" Margin="0,25,10,0">
-											<Material.ActionButton Icon="AccountSearch" Clicked="{searchNow}" >
-												<WhilePressed>
-													<Scale Factor="1.5" />
-												</WhilePressed>
-											</Material.ActionButton>
+										<StackPanel Alignment="CenterRight" Margin="0,25,10,0" Clicked="{searchNow}">
+											<Circle Height="54" Width="54" Fill="#7C4DFF">
+												<Material.RippleResponseCircle />
+												<Text Font="FontAwesome" Value="&#xf002;" TextColor="#FFF" TextAlignment="Center" Alignment="Center" />
+												<Tapped>
+													<Scale Factor="1.7" Duration=".4" Easing="BounceIn" EasingBack="BounceInOut" DurationBack=".2" />
+												</Tapped>
+												<DropShadow />
+											</Circle>
 										</StackPanel>
+									</StackPanel>
+								</Material.Card>
+								<Material.Card Height="300" Width="95%" Visibility="{visible}">
+									<StackPanel Alignment="Center">
+										<!-- <Material.Text Value="Résultats recherche" Alignment="TopCenter" Margin="0,10,0,0" Opacity=".5" /> -->
+										<Material.Text Value="Le compteur est {compteur}" Visibility="Collapsed" Alignment="Center" TextColor="Red" />
+										<Material.Text Value="{TextContainer}" TextAlignment="Center" TextWrapping="Wrap" Alignment="Center"  FontSize="20" Margin="25"/>
+										<Match String="{compteur}">
+											<Case String="1">
+												<Text Value="Recevoir un SMS avec toutes les informations sur votre Pièce d'indentitée?" Margin="20,0,25,0" TextWrapping="Wrap" TextAlignment="Center" />
 
-										<!--Each Items="{donnee}"> 
-											<Text Value="Mr {nom} {prenom} votre piece d'identité corespondante au recepice N° {recepice} est disponible au {localisation}" TextColor="#000" Alignment="Center" Margin="5" TextWrapping="Wrap" FontSize="20" />
-										</Each-->
-										<!--Text Value="Merci de nous faire confiance" Alignment="Center" Margin="20" /-->
+												<Grid Columns="60, 1*,60" >
+													<Text Font="FontAwesome" Value="&#xf10b;" Alignment="BottomCenter" FontSize="40" Margin="-30,0,0,-10" />
+													<FormNewDesign Width="95%" PlaceholderText="Numéro de téléphone" Value="{phoneNumber}" InputHint="Phone" MaxLength="9" TextColor="#000" Margin="-20,30,0,0" />
+													<NativeViewHost>
+														<Switch Alignment="BottomRight" />
+													</NativeViewHost>
+												</Grid>
+											</Case>
+											<Case String="0">
+												<Text Value="Souhaitez vous executer les actions suivantes" Margin="0,0,0,20" TextWrapping="Wrap" Alignment="Center" />
+												<Grid Columns="1*,1*">
+													<Button Text="Me notifier ..." Clicked="{MeNotifierView}"/>
+													<Button Text="Autres options" Clicked="{autreOption}" />
+												</Grid>
+											</Case>
+										</Match>
 									</StackPanel>
 								</Material.Card>
-								<!--Text Value="bonjour" />
-								<Match Integer="{compteur}">
-									<Case String="0" >
-										<Text Value="rien" />
-									</Case>
-									<Case String="1">
-										<Material.Text Value="{nom}" />
-									</Case>
-								</Match-->
-								<Material.Card Height="200" Width="95%" Visibility="{visible}">
-									<StackPanel>
-										<Material.Text Value="Résultats recherche" Alignment="TopCenter" Margin="0,10,0,0" Opacity=".5" />
-										<Material.Text Value="Le compteur est {compteur}" Alignment="Center" TextColor="Red" />
-										<TextView Value="{TextContainer}" TextWrapping="Wrap" Alignment="Center"  FontSize="20" Margin="10,0,10,0"/>
-									</StackPanel>
-								</Material.Card>
-								<Material.Card Height="70" Width="95%" Background="#000" Color="#000">
-									<Grid Columns="70, 1*">
-										<Material.AppBarIcon Icon="Help" Alignment="Center" />
-										<Material.Text Value="Besoin d'aide?" Alignment="Center" Color="#000" TextColor="#fff" />
-									</Grid>
-								</Material.Card>
+								<Text Value="Entre votre numéro de recepissé pour effectuer une recherche. la recherche est uniquement effectuée sur les numeros de recepissé en vigueur au Cameroun." TextWrapping="Wrap" Margin="25,25,25,0" Alignment="Center" Opacity=".5" />
+								<Text Font="FontAwesome" Value="&#xf10b;" Alignment="Center" FontSize="60" Margin="0,25,0,0" />
 							</Case>
 							<Case String="Passport">
 								<Material.Card Height="500" Width="95%">

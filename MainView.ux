@@ -1,4 +1,5 @@
 <App>
+	<Font File="fonts/fontawesome-webfont.ttf" ux:Global="FontAwesome" />
 	<ClientPanel>
 		<JavaScript>
 			//script d'initialisation des procedures
@@ -22,6 +23,8 @@
 			<configuration.about ux:Template="AboutView" router="router" />
 			<ID.CreateAccountView ux:Template="SignUpView" router="router" />
 			<ID.LoginView ux:Template="LoginView" router="router" />
+			<ID.MeNotifierView ux:Template="MeNotifierView" router="router" />
+			<ID.ScanRecepisseView ux:Template="ScanRecepisseView" router="router" />
 		</Navigator>
 	</ClientPanel>
 </App>

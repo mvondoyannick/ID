@@ -1,0 +1,97 @@
+<Panel ux:Class="ID.MeNotifierView">
+	<Router ux:Dependency="router" />
+	<JavaScript File="CoreQuery.js" />
+
+	<Material.DrawerPanel>
+		<Material.Drawer ux:Binding="Drawer" Edge="Left">
+			<DockPanel Background="#fff">
+				<Panel Background="#fff" Height="50" Dock="Top">
+					<Text Alignment="Center" TextColor="#fff" Value="CONFIGURATION">
+						<DropShadow />
+					</Text>
+				</Panel>
+				<ScrollView>
+					<StackPanel ItemSpacing="25" Margin="30,20,0,0">
+						<Each Items="{panneauLateral}">
+							<Grid Columns="1*,100">
+								<Text Value="{name}" TextWrapping="Wrap" TextColor="#fff" Color="#fff" FontSize="18" />
+								<Material.AppBarIcon Icon="{icon}" Alignment="Center" Dock="Right" Margin="0,0,10,0" />
+							</Grid>
+						</Each>
+					</StackPanel>
+				</ScrollView>
+			</DockPanel>
+		</Material.Drawer>
+			
+		<DockPanel>
+			<!--Image Layer="Background" File="Images/background.jpg" StretchMode="UniformToFill" /-->
+			<Material.AppBar Dock="Top">
+				<Material.AppBarIcon Dock="Left" Icon="ChevronLeft" Clicked="{goBack}">
+					<Material.RippleResponseCircle />
+				</Material.AppBarIcon>
+				<Text Value="Notifications" Alignment="Center" Color="#fff" FontSize="17" TextColor="#fff" ux:Name="Header" />
+				<Material.AppBarIcon Dock="Right" Icon="Check">
+					<Material.RippleResponseCircle />
+				</Material.AppBarIcon>
+			</Material.AppBar>
+
+			<Material.AppBar Dock="Bottom">
+				<Text Value="Besoin d'aide?" Alignment="Center" Color="#fff" FontSize="17" TextColor="#fff" />
+				<Material.AppBarIcon Dock="Right" Icon="Help">
+					<Material.RippleResponseCircle />
+				</Material.AppBarIcon>
+				<Material.AppBarIcon Dock="Right" Icon="Book">
+					<Material.RippleResponseCircle />
+				</Material.AppBarIcon>
+				<Material.AppBarIcon Dock="Right" Icon="CallMade">
+					<Material.RippleResponseCircle />
+				</Material.AppBarIcon>
+			</Material.AppBar>
+
+			<DockPanel>
+				<ScrollView>
+					<StackPanel Margin="0,10,0,0">
+						<Material.Card Height="350" Width="95%">
+							<StackPanel ItemSpacing="35" Margin="0,10,0,0">
+								<Panel Height="50" Width="100%">
+									<Grid Columns="60,1*,100">
+										<Text Font="FontAwesome" Alignment="Center" FontSize="25">&#xf133;</Text>
+										<Text Value="Me notifier tous les 3 jours pendant 1 mois" TextWrapping="Wrap" Alignment="Center" />
+										<Switch Value="false" />
+									</Grid>
+								</Panel>
+								<Panel Height="50" Width="100%">
+									<Grid Columns="60,1*,100">
+										<Text Font="FontAwesome" Alignment="Center" FontSize="25">&#xf073;</Text>
+										<Text Value="Me notifier tous les 3 jours jusqu'a ce que ma piece soit disponible" TextWrapping="Wrap" Alignment="Center" />
+										<Switch Value="false" />
+									</Grid>
+								</Panel>
+								<Panel Height="50" Width="100%">
+									<Grid Columns="60,1*,100">
+										<Text Font="FontAwesome" Alignment="Center" FontSize="25">&#xf274;</Text>
+										<Text Value="Me notifier uniquement si la piece est disponible " TextWrapping="Wrap" Alignment="Center" />
+										<Switch Value="false" />
+									</Grid>
+								</Panel>
+								<Panel Height="50" Width="100%">
+									<Grid Columns="60,1*,100">
+										<Text Font="FontAwesome" Alignment="Center" FontSize="25">&#xf271;</Text>
+										<Text Value="Configuration personnelle de la notification. " TextWrapping="Wrap" Alignment="Center" />
+										<Button Text="Configurer" />
+									</Grid>
+								</Panel>
+							</StackPanel>
+						</Material.Card>
+						<Text Value="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in." TextWrapping="Wrap" Margin="25" Alignment="Center" />
+						<Text Font="FontAwesome" Alignment="Center" FontSize="45">&#xf271;</Text>
+					</StackPanel>
+				</ScrollView>
+			</DockPanel>
+
+		</DockPanel>
+	</Material.DrawerPanel>
+</Panel>

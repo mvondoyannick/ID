@@ -140,14 +140,13 @@
 							<Text Value="Salut, que recherchez-vous aujourd'hui?" Alignment="Center" Margin="0,10,0,10" TextColor="#FFF">
 								<Material.AppBarIcon Icon="Robot" Alignment="Center" Margin="0,30,0,0" />
 							</Text>
-							<Material.ActionButton Icon="Microphone" Alignment="BottomRight" Margin="0,0,30,-25">
+							<Material.ActionButton Icon="Qrcode" Alignment="BottomRight" Margin="0,0,30,-25">
 								<WhilePressed>
 									<Scale Factor="1.5" />
 								</WhilePressed>
 							</Material.ActionButton>
 						</Video>
 						<Each Items="{ville}">
-
 							<Material.Card Width="95%" Height="100" Clicked="{redirect}">
 								<Grid Columns="100,1*">
 									<Image File="{picture}" StretchMode="UniformToFill">
@@ -156,6 +155,9 @@
 									<Material.Text Value="{name}" Alignment="CenterLeft" Margin="25,0,0,0" FontSize="20" TextWrapping="Wrap">
 									</Material.Text>
 								</Grid>
+								<WhilePressed>
+									<Scale Factor="1.1" Duration=".2" />
+								</WhilePressed>
 							</Material.Card>
 						</Each>
 						<Panel Width="95%" Height="75" Margin="0,0,0,10">
