@@ -2,6 +2,7 @@
 	<!-- cette vue traites toutes les informations de la CNI -->
 	<Router ux:Dependency="router" />
 	<JavaScript File="CoreQuery.js" />
+
 	<JavaScript>
 		var Observable = require('FuseJS/Observable');
 		var nom = Observable("");
@@ -32,7 +33,6 @@
 			}
 			//router.push('ResponseView');
 		}
-
 		module.exports = {
 			nom:nom,
 			prenom:prenom,
@@ -107,18 +107,43 @@
 
 						<Match Value="{name}">
 							<Case String="Carte d'identités">
-								<Rectangle ux:Name="errorVisible" Color="#FFCDD2" Height="50" Width="95%" Alignment="Center" CornerRadius="3" Visibility="{errorVisible}">
+								<Rectangle ux:Name="errorVisible" Color="#FFCDD2" Height="50" Width="95%" Alignment="Center" CornerRadius="3" Visibility="{errorVisible}" Clicked="{sendToast}">
+									<AddingAnimation>
+										<Change errorVisible.Color="#000" Duration=".8" Easing="BounceIn" />
+										<Move X="-1" RelativeTo="PositionChange" Duration=".8" Easing="BounceIn" />
+									</AddingAnimation>
 									<Tapped>
 										<Set errorVisible.Visibility="Collapsed" />
+										<!-- <Callback Handler="{sendToast}" /> -->
 									</Tapped>
 									<Text Value="{errorResult}" Alignment="Center" Visibility="Visible" TextWrapping="Wrap" TextAlignment="Center" />
 									<DropShadow />
 								</Rectangle>
-								<Material.Card Height="170" Width="95%">
+								<Material.Card Height="270" Width="95%">
 									<StackPanel>
+										<Image File="Images/1.jpeg" Width="100%" Height="150" StretchMode="UniformToFill">
+											
+											<!-- le bouton de recherche -->
+											<StackPanel Alignment="BottomRight" Margin="0,0,20,-25" Clicked="{searchNow}">
+												<Circle Height="60" Width="60" Fill="#7C4DFF" ux:Name="search">
+													<Material.RippleResponseCircle />
+													<Text Font="FontAwesome" Value="&#xf002;" TextColor="#FFF" TextAlignment="Center" Alignment="Center" />
+													<WhilePressed>
+														<Scale Factor=".92" Duration=".1" DurationBack=".2" />
+													</WhilePressed>
+													<DropShadow />
+												</Circle>
+											</StackPanel>
+
+										</Image>
 										<Grid Columns="60, 1*" >
-											<Text Font="FontAwesome" Value="&#xf2c2;" Alignment="BottomCenter" FontSize="25" Margin="0,0,0,-10" />
-											<FormNewDesign PlaceholderText="Numéro du recepicé" Width="100%" Value="{query}" MaxLength="15" TextColor="#000" Margin="0,50,20,0" />
+											<Text Font="FontAwesome" Value="&#xf2c2;" ux:Name="cni_icon" Alignment="BottomCenter" FontSize="25" Margin="0,0,0,-7" />
+											<FormNewDesign PlaceholderText="Numéro du recepicé" ux:Name="cni_form" Width="100%" Value="{query}" MaxLength="15" TextColor="#000" Margin="0,50,20,0">
+												<WhileFocused>
+													<Change cni_icon.TextColor="Green" Duration=".2" />
+													<Change cni_form.PlaceholderColor="#000" Duration=".5" />
+												</WhileFocused>
+											</FormNewDesign>
 									</Grid>
 										<Button Text="Autres options" Alignment="Right" Margin="0,25,30,0" Clicked='{autreOption}' Visibility="Hidden">
 											<Clicked>
@@ -126,17 +151,6 @@
 											</Clicked>
 										</Button>
 
-										<!-- le bouton de recherche -->
-										<StackPanel Alignment="CenterRight" Margin="0,25,10,0" Clicked="{searchNow}">
-											<Circle Height="54" Width="54" Fill="#7C4DFF">
-												<Material.RippleResponseCircle />
-												<Text Font="FontAwesome" Value="&#xf002;" TextColor="#FFF" TextAlignment="Center" Alignment="Center" />
-												<Tapped>
-													<Scale Factor="1.7" Duration=".4" Easing="BounceIn" EasingBack="BounceInOut" DurationBack=".2" />
-												</Tapped>
-												<DropShadow />
-											</Circle>
-										</StackPanel>
 									</StackPanel>
 								</Material.Card>
 								<Material.Card Height="300" Width="95%" Visibility="{visible}">
@@ -146,13 +160,18 @@
 										<Material.Text Value="{TextContainer}" TextAlignment="Center" TextWrapping="Wrap" Alignment="Center"  FontSize="20" Margin="25"/>
 										<Match String="{compteur}">
 											<Case String="1">
-												<Text Value="Recevoir un SMS avec toutes les informations sur votre Pièce d'indentitée?" Margin="20,0,25,0" TextWrapping="Wrap" TextAlignment="Center" />
+												<Text Value="Recevoir un SMS avec toutes les informations sur votre Pièce d'identitée?" Margin="20,0,25,0" TextWrapping="Wrap" TextAlignment="Center" />
 
 												<Grid Columns="60, 1*,60" >
 													<Text Font="FontAwesome" Value="&#xf10b;" Alignment="BottomCenter" FontSize="40" Margin="-30,0,0,-10" />
 													<FormNewDesign Width="95%" PlaceholderText="Numéro de téléphone" Value="{phoneNumber}" InputHint="Phone" MaxLength="9" TextColor="#000" Margin="-20,30,0,0" />
 													<NativeViewHost>
-														<Switch Alignment="BottomRight" />
+														<Switch Alignment="BottomRight" ux:Name="_sw">
+															<WhileTrue Value="{ReadProperty _sw.Value}">
+											          <!-- <DebugAction Message="Switch.Value = true" /> -->
+											          <Callback Handler="{HandlerSendSMS}" />
+											        </WhileTrue>
+														</Switch>
 													</NativeViewHost>
 												</Grid>
 											</Case>

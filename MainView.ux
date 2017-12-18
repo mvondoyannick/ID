@@ -1,6 +1,5 @@
 <App>
 	<Font File="fonts/fontawesome-webfont.ttf" ux:Global="FontAwesome" />
-	<ClientPanel>
 		<JavaScript>
 			//script d'initialisation des procedures
 			debug_log("Init rc.d");
@@ -25,7 +24,7 @@
 			<ID.LoginView ux:Template="LoginView" router="router" />
 			<ID.MeNotifierView ux:Template="MeNotifierView" router="router" />
 			<ID.ScanRecepisseView ux:Template="ScanRecepisseView" router="router" />
+			<ID.sendSmsCniFoundView ux:Template="sendSmsCniFound" router="router" />
 		</Navigator>
-	</ClientPanel>
 </App>
 

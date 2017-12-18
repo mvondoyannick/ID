@@ -1,15 +1,13 @@
 {
-  "RootNamespace":"",
+  "RootNamespace": "",
   "Packages": [
-  	"Fuse",
-  	"FuseJS",
-  	"Fuse.GeoLocation",
-  	"Fuse.Maps",
+    "Fuse",
+    "FuseJS",
+    "Fuse.Maps",
     "Fuse.Vibration",
     "Fuse.Share",
     "Fuse.CameraRoll",
-    "Fuse.Camera",
-    "Fuse.Controls.CameraView"
+    "Fuse.Camera"
   ],
   "Projects": [
     "fuse-device/device_include.unoproj"
@@ -21,11 +19,11 @@
     "Images/*.jpg:Bundle",
     "Videos/*.mp4:Bundle"
   ],
-  "Title":"ID Preview",
-  "Version": "0.0.2beta3",
-  "Android":{
-    "VersionName":"$(Version)",
-    "ApplicationLabel": "Hi Request",
+  "Title": "ID Found",
+  "Version": "0.0.2beta6",
+  "Android": {
+    "VersionName": "$(Version)",
+    "ApplicationLabel": "ID Found",
     "Description": "Aucune description pour le moment",
     "Package": "com.idapp.org",
     "PreviewPackage": "com.idapp.org.preview",
@@ -38,9 +36,19 @@
       "XXXHDPI": "Images/192_192.png"
     }
   },
-  "Description" : "Aucune pour le moment",
-  "Publisher" : "GraceOfGod",
-  "Mobile" : {
+  "Description": "Aucune pour le moment",
+  "Publisher": "GraceOfGod",
+  "Mobile": {
     "Orientations": "Portrait"
+  },
+  "Excludes": [
+    "fuse_modules/"
+  ],
+  "FusePM": {
+    "Dependencies": [
+      "https://github.com/bolav/fuse-homescreen",
+      "https://github.com/blackrider401/Fuse_Android_Toast",
+      "https://github.com/zean00/fuse-qreader"
+    ]
   }
 }

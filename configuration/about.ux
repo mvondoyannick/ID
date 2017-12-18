@@ -13,8 +13,8 @@
 			<StackPanel ux:Name="textPanel" Alignment="Center">
 				<Text ux:Class="TitleText" Color="#fff" TextAlignment="Center" />
 				<StatusBarBackground Margin="0,0,0,15"/>
-				<TitleText ux:Name="topText" FontSize="18" Margin="5">MICHAEL BURNS</TitleText>
-				<TitleText ux:Name="bottomText" FontSize="14">Creative Director</TitleText>
+				<TitleText ux:Name="topText" FontSize="18" Margin="5">ID Client Application</TitleText>
+				<TitleText ux:Name="bottomText" FontSize="14" Value="{uuid}"></TitleText>
 			</StackPanel>
 
 
@@ -58,12 +58,56 @@
 			<StackPanel Padding="0,370,0,0">
 				<Text ux:Class="BodyText" Color="#355566" TextWrapping="Wrap" />
 
-				<BodyText TextAlignment="Center" FontSize="20" Margin="70,0,70,40">
-					Digital artist, videographer, board game enthusiast and father of two.
-				</BodyText>
+				<Grid Columns="1*,1*" Margin="50,0,50,10">
+					<Material.Text Value="UUID" />
+					<Material.Text Value="{uuid}" TextWrapping="Wrap" />
+				</Grid>
+				
 				<Rectangle Height="2" Margin="50,0" Color="#E1E1E1"/>
 
-				<BodyText FontSize="16" Margin="50,40,50,0">
+				<Grid Columns="1*,1*" Margin="50,20,50,10">
+					<Material.Text Value="VENDOR" />
+					<Material.Text Value="{vendor}" TextWrapping="Wrap" />
+				</Grid>
+
+				<Rectangle Height="2" Margin="50,0" Color="#E1E1E1"/>
+
+				<Grid Columns="1*,1*" Margin="50,20,50,10">
+					<Material.Text Value="MODELE" />
+					<Material.Text Value="{modele}" TextWrapping="Wrap" />
+				</Grid>
+
+				<Rectangle Height="2" Margin="50,0" Color="#E1E1E1"/>
+
+				<Grid Columns="1*,1*" Margin="50,20,50,10">
+					<Material.Text Value="SYSTEME" />
+					<Material.Text Value="{systeme}" TextWrapping="Wrap" />
+				</Grid>
+
+				<Rectangle Height="2" Margin="50,0" Color="#E1E1E1"/>
+
+				<Grid Columns="1*,1*" Margin="50,20,50,10">
+					<Material.Text Value="OS VERSION" />
+					<Material.Text Value="{SVersion}" TextWrapping="Wrap" />
+				</Grid>
+
+				<Rectangle Height="2" Margin="50,0" Color="#E1E1E1"/>
+
+				<Grid Columns="1*,1*" Margin="50,20,50,10">
+					<Material.Text Value="SDK VERSION" />
+					<Material.Text Value="{SDKVersion}" TextWrapping="Wrap" />
+				</Grid>
+
+				<Rectangle Height="2" Margin="50,0" Color="#E1E1E1"/>
+
+				<Grid Columns="1*,1*" Margin="50,20,50,10">
+					<Material.Text Value="PROCESSORS" />
+					<Material.Text Value="{Processors}" TextWrapping="Wrap" />
+				</Grid>
+
+
+
+				<!-- <BodyText FontSize="16" Margin="50,40,50,0">
 					Moved to Palo Alto in 2014 to continue a career as a Creative Director with Fuse. Absolutely adore working with this team.
 				</BodyText>
 				<BodyText FontSize="16" Margin="50,20,50,0">
@@ -71,9 +115,9 @@
 				</BodyText>
 				<BodyText FontSize="16" Margin="50,20,50,50">
 					When not busy with UX and design, Michael is a board game enthusiast who has collected more than his fair share of classic and contemporary board games. His two daughters are not allowed anywhere near his vintage sets though.
-				</BodyText>
-				<Button Text="Quitter" Alignment="HorizontalCenter" Margin="0,0,0,30" Clicked="{goBack}">
-					<Rectangle Layer="Background" Height="45" Width="100" CornerRadius="5" Background="#E1E1E1" />
+				</BodyText> -->
+				<Button Text="Quitter" Alignment="HorizontalCenter" Margin="0,20,0,30" Clicked="{goBack}">
+					<Rectangle Layer="Background" Height="45" Width="100" CornerRadius="5" Fill="#E1E1E1" />
 				</Button>
 			</StackPanel>
 		</ScrollView>

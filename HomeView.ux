@@ -53,13 +53,6 @@
 				"route":"Garoua",
 				"service":"autorisation_sejour"
 			},
-			/*{
-				"id":07,
-				"name": "Notifications",
-				"description":"Configurer le centre de notifications",
-				"picture":"Images/7.jpeg",
-				"route":"Garoua"
-			},*/
 			{
 				"id":08,
 				"name": "Acte de naissance",
@@ -99,21 +92,20 @@
 	<Material.DrawerPanel>
 		<Material.Drawer ux:Binding="Drawer" Edge="Left">
 			<DockPanel Background="#000">
-				<Panel Background="#000" Height="50" Dock="Top">
-					<Text Alignment="BottomCenter" TextColor="#fff" Value="CONFIGURATION">
-						<DropShadow />
+				<Panel Background="#FFF" Height="150" Dock="Top">
+					<Text Alignment="Center" TextColor="#000" Value="CONFIGURATION">
 					</Text>
 				</Panel>
 				<ScrollView>
-					<StackPanel ItemSpacing="30" Margin="30,20,0,0">
+					<StackPanel ItemSpacing="30" Margin="20,20,0,0">
 						<Each Items="{panneauLateral}">
 							<Grid Columns="1*,100">
-								<Text Value="{name}" TextWrapping="Wrap" TextColor="#fff" Color="#fff" FontSize="18" Clicked="{gotoConfiguration}" />
-								<Material.AppBarIcon Icon="{icon}" Alignment="Center" Dock="Right" Margin="0,0,10,0" />
+								<Text Value="{name}" TextWrapping="Wrap" TextColor="#fff" Color="#fff" FontSize="15" Clicked="{gotoConfiguration}" />
+								<Material.AppBarIcon Icon="{icon}" Alignment="Center" Dock="Right" Margin="0,0,5,0" />
 							</Grid>
 						</Each>
 						<Grid Columns="1*,100">
-							<Text Value="About" TextWrapping="Wrap" TextColor="#fff" Color="#fff" FontSize="18" Clicked="{about}" />
+							<Text Value="About" TextWrapping="Wrap" TextColor="#fff" Color="#fff" FontSize="15" Clicked="{about}" />
 							<Material.AppBarIcon Icon="Help" Alignment="Center" Dock="Right" Margin="0,0,10,0" />
 						</Grid>
 					</StackPanel>
@@ -136,28 +128,31 @@
 			<DockPanel>
 				<ScrollView>
 					<StackPanel ItemSpacing="10" Margin="0,0,0,0">
-						<Video File="Videos/4.mp4" Width="100%" Height="150" StretchMode="UniformToFill" AutoPlay="true" IsLooping="true">
+						<Video File="Videos/4.mp4" ux:Name="_video" Width="100%" Height="150" StretchMode="UniformToFill" AutoPlay="true" IsLooping="true">
 							<Text Value="Salut, que recherchez-vous aujourd'hui?" Alignment="Center" Margin="0,10,0,10" TextColor="#FFF">
 								<Material.AppBarIcon Icon="Robot" Alignment="Center" Margin="0,30,0,0" />
 							</Text>
-							<Material.ActionButton Icon="Qrcode" Alignment="BottomRight" Margin="0,0,30,-25">
-								<WhilePressed>
-									<Scale Factor="1.5" />
-								</WhilePressed>
-							</Material.ActionButton>
+							<Material.ActionButton Icon="Qrcode" Alignment="BottomRight" Margin="0,0,30,-25" />
+							<AddingAnimation>
+								<Move Y="-1" RelativeTo="ParentSize" Duration=".5" Easing="BackIn" />
+							</AddingAnimation>
 						</Video>
 						<Each Items="{ville}">
 							<Material.Card Width="95%" Height="100" Clicked="{redirect}">
 								<Grid Columns="100,1*">
-									<Image File="{picture}" StretchMode="UniformToFill">
-										<!-- <Material.AppBarIcon Icon="Google" Alignment="Center" /> -->
-									</Image>
-									<Material.Text Value="{name}" Alignment="CenterLeft" Margin="25,0,0,0" FontSize="20" TextWrapping="Wrap">
+									<Image File="{picture}" StretchMode="UniformToFill" />
+									<Material.Text Value="{= toUpper({name})}" Alignment="CenterLeft" Margin="10,0,10,0" FontSize="20" TextWrapping="Wrap">
 									</Material.Text>
 								</Grid>
 								<WhilePressed>
-									<Scale Factor="1.1" Duration=".2" />
+									<Scale Factor=".95" Duration=".2" />
 								</WhilePressed>
+								<AddingAnimation>
+									<Move X="-1" RelativeTo="ParentSize" Duration=".4" />
+								</AddingAnimation>
+								<RemovingAnimation>
+									<Move X="1" RelativeTo="ParentSize" Duration=".5" />
+								</RemovingAnimation>
 							</Material.Card>
 						</Each>
 						<Panel Width="95%" Height="75" Margin="0,0,0,10">

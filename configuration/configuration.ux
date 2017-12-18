@@ -24,6 +24,7 @@
 			</DockPanel>
 		</Material.Drawer>
 			
+
 		<DockPanel>
 			<Material.AppBar Dock="Top">
 				<Material.AppBarIcon Dock="Left" Icon="ChevronLeft" Clicked="{goBack}" />
@@ -37,49 +38,21 @@
 						<Match Value="{name}">
 							<Case String="Configuration">
 								<StackPanel ItemSpacing="10">
-									<Material.Card Height="225" Width="95%">
-										<Text Value="Configuration" Alignment="Right"  Margin="0,20,20,0" />
-										<StackPanel ItemSpacing="20" Margin="0,80,0,0">
-											<Grid Columns="1*,100">
-												<Material.Text Value="Vibreur" Alignment="CenterLeft" Margin="20,0,0,0" />
-												<NativeViewHost>
-													<Switch />
-												</NativeViewHost>
-											</Grid>
-											<Grid Columns="1*,100">
-												<Material.Text Value="Dark Theme" Alignment="CenterLeft" Margin="20,0,0,0" />
-												<NativeViewHost>
-													<Switch />
-												</NativeViewHost>
-											</Grid>
-											<Grid Columns="1*,100">
-												<Material.Text Value="Vibreur" Alignment="CenterLeft" Margin="20,0,0,0" />
-												<NativeViewHost>
-													<Switch />
-												</NativeViewHost>
-											</Grid>
-										</StackPanel>
-									</Material.Card>
-									<Material.Card Height="225" Width="95%" Margin="0,0,0,60">
-										<Text Value="Luminosité en contraste" Alignment="Right"  Margin="0,20,20,0" />
-										<StackPanel ItemSpacing="20" Margin="0,80,0,0">
-											<Grid Columns="1*,100">
-												<Material.Text Value="Luminosité" Alignment="CenterLeft" Margin="20,0,0,0" />
-												<NativeViewHost>
-													<Switch />
-												</NativeViewHost>
-											</Grid>
-											<Grid Columns="1*,100">
-												<Material.Text Value="Activer la LED" Alignment="CenterLeft" Margin="20,0,0,0" />
-												<NativeViewHost>
-													<Switch />
-												</NativeViewHost>
-											</Grid>
-											<Grid Columns="1*,100">
-												<Material.Text Value="Couleur LED" Alignment="CenterLeft" Margin="20,0,0,0" />
-												<Circle Background="Red" Height="20" Width="20" Alignment="Right" Margin="0,0,15,0" />
-											</Grid>
-										</StackPanel>
+									<Material.Card Height="500" Width="95%">
+										<WrapPanel FlowDirection="RightToLeft" Alignment="TopCenter">
+										    <Each Items="{appConfig}">
+										        <Rectangle Margin="7" Width="120" Height="120" Fill="#8aacc8" CornerRadius="5" ux:Name="_rect">
+										        	<StackPanel Alignment="Center">
+											        	<Material.AppBarIcon Icon="Account" Alignment="Center" /> 
+											        	<Text Value="{name}" TextColor="#000" TextAlignment="Center" TextWrapping="Wrap" Alignment="Center" Margin="0,10,0,0" />
+											        	<WhilePressed>
+											        		<Change _rect.CornerRadius="30" Duration=".2" Easing="BounceIn" />
+											        		<Rotate Degrees="10" Duration=".3" Target="_rect" />
+											        	</WhilePressed>
+											        </StackPanel>
+										        </Rectangle>
+										    </Each>
+											</WrapPanel>
 									</Material.Card>
 								</StackPanel>
 							</Case>
@@ -102,6 +75,29 @@
 								cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 								proident, sunt in culpa qui officia deserunt mollit anim id est laborum." TextWrapping="Wrap" Margin="25" Opacity=".5" />
 								<Text Font="FontAwesome" Value="&#xf0f3;" FontSize="40" TextColor="#000" TextAlignment="Center" Alignment="Center" />
+							</Case>
+							<Case String="Mode de connexion">
+								<Material.Card Height="300" Width="95%" Margin="0,10,0,0" >
+									<StackPanel ItemSpacing="30">
+										<Text Value="Mode de connexion" Alignment="Right" Margin="0,10,10,20" />
+										<Grid Columns="1*,100">
+											<StackPanel>
+												<Material.Text Value="Mode USSD" TextWrapping="Wrap" Alignment="CenterLeft" Margin="20,0,0,0" />
+												<Material.Text Value="Ne necessite pas de connexion internet" Margin="20,0,0,0" Opacity=".5" TextWrapping="Wrap" FontSize="14" />
+											</StackPanel>
+											<Switch Value="false" />
+										</Grid>
+										<Grid Columns="1*,100" Margin="0,20,0,0">
+											<StackPanel>
+												<Material.Text Value="Mode INternet (necessite internet)" TextWrapping="Wrap" Alignment="CenterLeft" Margin="20,0,0,0" />
+												<Material.Text Value="Necessite une connexion internet" TextWrapping="Wrap" Opacity=".5" FontSize="14" Margin="20,0,0,0" />
+											</StackPanel>
+												<Switch Value="false" />
+										</Grid>
+									</StackPanel>
+								</Material.Card>
+								<Material.Text Value="Le mode de connexion permet de choisir la meilleure methode pour contacter les serveurs de ID et ainsi de pouvoir recevoir les informations sur vos requetes de facon instantanée." TextWrapping="Wrap" Margin="15" Opacity=".5" />
+								<Text Font="FontAwesome" Value="&#xf0f3;" FontSize="30" TextColor="#000" TextAlignment="Center" Alignment="Center" />
 							</Case>
 							<Case String="Mon compte">
 								<Material.Card Height="250" Width="95%" Margin="0,10,0,0">

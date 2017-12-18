@@ -7,7 +7,6 @@ var Device = require('Device');
 var cameraRoll = require("FuseJS/CameraRoll");
 var camera = require("FuseJS/Camera");
 var Vibration = require("FuseJS/Vibration");
-
 debug_log("Current unix date : "+Date.now());
 //console.log('Current device language: ' + Device.locale);
 
@@ -52,6 +51,45 @@ var developer = [
 	}
 ]
 
+/*les informations sur la configuration de l'application*/
+var appConfig = [
+	{
+		"id": "01",
+		"name": "theme",
+		"icn": "Account"
+	},
+	{
+		"id": "02",
+		"name": "Compte utilisateur",
+		"icn": "Account"
+	},
+	{
+		"id": "03",
+		"name": "Sécurité",
+		"icn": "Account"
+	},
+	{
+		"id": "04",
+		"name": "Materiel",
+		"icn": "Account"
+	},
+	{
+		"id": "05",
+		"name": "Notification",
+		"icn": "Account"
+	},
+	{
+		"id": "06",
+		"name": "Information",
+		"icn": "Account"
+	},
+	{
+		"id": "06",
+		"name": "Mise à jour",
+		"icn": "Account"
+	}
+]
+
 /*les informations contenues dans le panneau lateral*/
 var panneauLateral = [
 	{
@@ -86,23 +124,21 @@ var panneauLateral = [
 	},
 	{
 		"id": 07,
-		"name": "Personnaliser",
+		"name": "Mode de connexion",
 		"icon": "Usb",
 		"route": "aucune"
-	},
-	{
-		"id": 08,
-		"name": "Plus ...",
-		"icon": "FolderPlus",
-		"route": "aucune"
-	},
-	{
-		"id": 09,
-		"name": "Historique",
-		"icon": "History",
-		"route": "aucune"
-	},
+	}
 ];
+
+//teste de fonctionnalités avec les observables
+var d = Observable([
+	{
+		"name" : "intel"
+	},
+	{
+		"name" : "AMD"
+	}
+]);
 
 
 //la fonction permettant de reinitialiser les parametres
@@ -214,15 +250,6 @@ var route = hikr.map(function(x) {return x.route; });
 var service = hikr.map(function(x) {return x.service; });
 
 
-/*fin de recuperation*/
-/*==============================================================*/
-
-//=============================================================================================
-//=============================================================================================
-//======================= INFORMATIONS SUR LE PANNEAU LATERAL =================================
-//=============================================================================================
-//=============================================================================================
-/*acces a la page de configuration generale*/
 function gotoConfiguration(arg){
 
 	debug_log(JSON.stringify(arg.data));
@@ -346,7 +373,8 @@ function SearchRecepisse(r){
 	//SetErrorVisible(errorVisible.value);
 	clear();
 	debug_log("le recepisse : "+r);
-		fetch("http://10b588f6.ngrok.io/app/cni/_search?q=recepice:"+r).then(function(response){
+	var baseURI = "http://e50af827.ngrok.io";
+		fetch(baseURI+"/app/cni/_search?q=recepice:"+r).then(function(response){
 			if (response.status !== 200) {
 				//retourner un message d'erreur si la connexion internet venait a partir
 				errorVisible.value = "Visible";
@@ -403,6 +431,17 @@ function LoginView(){
 
 }
 
+//fonction permettant d'ouvrir l'interface d'envoi du sms lorsque le recepisse a été trouvé
+function HandlerSendSMS(phoneNumber){
+	var phoneNumber = Observable();
+	if (phoneNumber == "") {
+		errorResult.value = "Saisir un numero de telephone valide";
+	}
+	else {
+		router.push("sendSmsCniFound", phoneNumber);
+	}
+}
+
 getDeviceInformation();
 
 module.exports = {
@@ -440,5 +479,24 @@ module.exports = {
 	failed: failed,
 	ScanRecepisse:ScanRecepisse,
 	MeNotifierView:MeNotifierView,
-	ScanRecepisseView:ScanRecepisseView
+	ScanRecepisseView:ScanRecepisseView,
+	HandlerSendSMS: HandlerSendSMS,
+	appConfig: appConfig,
+	uuid : Device.UUID,
+	vendor : Device.vendor,
+	modele: Device.model,
+	systeme : Device.system,
+	SVersion : Device.systemVersion,
+	SDKVersion : Device.SDKVersion,
+	Processors : Device.cores
 };
+
+
+/*
+   console.log('Model name: '         + Device.model);
+    console.log('System: '             + Device.system);
+    console.log('System version: '     + Device.systemVersion);
+    console.log('System SDK ver: '     + Device.SDKVersion);
+    console.log('Logical processors: ' + Device.cores);
+    console.log('is retina?: '         + Device.isRetina
+*/
