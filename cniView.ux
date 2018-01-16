@@ -82,7 +82,7 @@
 			</Material.AppBar>
 
 			<Material.AppBar Dock="Bottom">
-				<Text Value="Besoin d'aide?" Alignment="Center" Color="#fff" FontSize="17" TextColor="#fff" />
+				<!-- <Text Value="Besoin d'aide?" Alignment="Center" Color="#fff" FontSize="17" TextColor="#fff" />
 				<Material.AppBarIcon Dock="Right" Icon="Help">
 					<Material.RippleResponseCircle />
 				</Material.AppBarIcon>
@@ -91,7 +91,8 @@
 				</Material.AppBarIcon>
 				<Material.AppBarIcon Dock="Right" Icon="CallMade">
 					<Material.RippleResponseCircle />
-				</Material.AppBarIcon>
+				</Material.AppBarIcon> -->
+				<Button Text="Rechercher" Alignment="Center" Clicked="{searchNow}" />
 			</Material.AppBar>
 
 			<DockPanel>
@@ -185,8 +186,8 @@
 										</Match>
 									</StackPanel>
 								</Material.Card>
-								<Text Value="Entre votre numéro de recepissé pour effectuer une recherche. la recherche est uniquement effectuée sur les numeros de recepissé en vigueur au Cameroun." TextWrapping="Wrap" Margin="25,25,25,0" Alignment="Center" Opacity=".5" />
-								<Text Font="FontAwesome" Value="&#xf10b;" Alignment="Center" FontSize="60" Margin="0,25,0,0" />
+								<Text Value="Entre votre numéro de recepissé pour effectuer une recherche. la recherche est uniquement effectuée sur les numeros de recepissé en vigueur au Cameroun." TextWrapping="Wrap" Margin="10" Alignment="Center" Opacity=".5" />
+								<Text Font="FontAwesome" Value="&#xf10b;" Alignment="Center" FontSize="40" Margin="0,15,0,0" />
 							</Case>
 							<Case String="Passport">
 								<Material.Card Height="500" Width="95%">

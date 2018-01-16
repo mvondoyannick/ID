@@ -1,5 +1,6 @@
 <App>
 	<Font File="fonts/fontawesome-webfont.ttf" ux:Global="FontAwesome" />
+	<Qreader ux:Global="Qreader" />
 		<JavaScript>
 			//script d'initialisation des procedures
 			debug_log("Init rc.d");

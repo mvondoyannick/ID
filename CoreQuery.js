@@ -9,6 +9,17 @@ var camera = require("FuseJS/Camera");
 var Vibration = require("FuseJS/Vibration");
 debug_log("Current unix date : "+Date.now());
 //console.log('Current device language: ' + Device.locale);
+//integragration du code Qr
+var qreader = require("Qreader");
+var txt = Observable();
+
+//affichage de Toast
+var deviceToast = require("deviceToast");
+
+function sendToast(msg){
+	var msg = "Android Toast is Working";
+	deviceToast.toastIt(msg)
+}
 
 /* les variables utilisées dans le systeme */
 checked = Observable('\uf05d');
@@ -29,7 +40,7 @@ var errorResult = Observable();
 var imgPath = Observable();
 
 /*les informations sur l'application et le versionning*/
-var appName = "ID"; //le nom de l'application
+var appName = "Identify Search"; //le nom de l'application
 var appVersion = "0.0.1alfa";
 var appDescription = "ID est une application permettant d'identifier la disponbilité de vos piece personnelles";
 var developer = [
@@ -157,8 +168,19 @@ clear = (function(){
 	visible.value = "Collapsed";
 });
 
+
+//function pour scanner un code qr en utilisant la camera de l'appareil photo
+function scanner() {
+ 	// body...
+ 	debug_log("Demarrage de la fonction de scannne")
+ 	qreader.scan().then(function(res) {
+ 		txt.value = res;
+ 		debug_log("resultat du scan : "+txt.value);
+ 	});
+ } 
+
 //gestion de la capture du code barre
-function ScanRecepisse(){
+/*function ScanRecepisse(){
 	console.log("Picture starded");
 	camera.takePicture(640, 480)
 		.then(function(image) {
@@ -173,7 +195,7 @@ function ScanRecepisse(){
 		}, function(error) {
 			console.log("Une erreur est survenue durant la capture : "+error);
 	});
-}
+}*/
 
 
 //fonction user data
@@ -477,7 +499,6 @@ module.exports = {
 	SignUp: SignUp,
 	checked: checked,
 	failed: failed,
-	ScanRecepisse:ScanRecepisse,
 	MeNotifierView:MeNotifierView,
 	ScanRecepisseView:ScanRecepisseView,
 	HandlerSendSMS: HandlerSendSMS,
@@ -488,7 +509,10 @@ module.exports = {
 	systeme : Device.system,
 	SVersion : Device.systemVersion,
 	SDKVersion : Device.SDKVersion,
-	Processors : Device.cores
+	Processors : Device.cores,
+	scanner : scanner,
+	txt: txt,
+	sendToast: sendToast
 };
 
 

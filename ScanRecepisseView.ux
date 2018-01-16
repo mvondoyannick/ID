@@ -51,8 +51,8 @@
 			<DockPanel>
 				<ScrollView>
 					<StackPanel Margin="0,10,0,0">
-						<Material.Card Height="350" Width="95%">
-							<Text Font="FontAwesome" Alignment="Center" FontSize="45" Margin="0,0,0,100" Value="&#xf030;" Clicked="{ScanRecepisse}">
+						<Material.Card Height="250" Width="95%">
+							<Text Font="FontAwesome" Alignment="Center" FontSize="45" Margin="0,0,0,100" Value="&#xf030;" Clicked="{scanner}">
 								<Tapped>
 									<Scale Factor="1.5" Duration=".5" Easing="ElasticIn" EasingBack="ElasticInOut" />
 								</Tapped>
@@ -60,10 +60,8 @@
 							</Text>
 							<Text Font="FontAwesome" Alignment="BottomCenter" FontSize="15" TextWrapping="Wrap" Margin="25,0,25,50" TextAlignment="Center" >Toucher l'icone de l'appareil photo pour lancer le scan de votre recepisse.</Text>
 						</Material.Card>
-						<Text Value="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in." TextWrapping="Wrap" Margin="25" Alignment="Center" />
+						<Text Value="{txt}" TextWrapping="Wrap" Margin="25" Alignment="Center" />
+						<Button Text="Send Toast" Clicked="{sendToast}" />
 						<Text Font="FontAwesome" Alignment="Center" FontSize="45">&#xf030;</Text>
 					</StackPanel>
 				</ScrollView>

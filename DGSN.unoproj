@@ -10,7 +10,9 @@
     "Fuse.Camera"
   ],
   "Projects": [
-    "fuse-device/device_include.unoproj"
+    "fuse-device/device_include.unoproj",
+    "fuse_modules/zean00/fuse-qreader/fuse-qreader.unoproj",
+    "fuse_modules/Fuse_Android_Toast/Android_Toast.unoproj"
   ],
   "Includes": [
     "*",
